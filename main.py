@@ -7,6 +7,7 @@ import time
 LOGIN = "f.simonin128"
 PASSWORD = "FloFs131102&"
 URL = "https://0383301g.index-education.net/pronote/mobile.parent.html"
+current_page = ""
 
 MYDEBUG = True
 
@@ -15,64 +16,68 @@ notes_data = []
 notes = []
 
 def in_auth_flow(page):
-    if   "cas" in page.url.lower():
-        return "cas"
+    if "cas" in page.url.lower():
+        if "login" in page.url.lower():
+            return "cas login"
+        elif "redirect" in page.url.lower():
+            return "cas client redirect"
     elif "educonnect" in page.url.lower():
         return "educonnect"
     elif "saml" in page.url.lower():
         return "saml"
-    elif "login" in page.url.lower():
-        return "login"
     else:
-        return "inconnu" + page.url.lower()
+        return "page inconnu : " + page.url.lower()
 
 
 def is_logged_in(page):
-    return "pronote" in page.url.lower() and "cas" not in page.url.lower()
+    return "0383301g.index-education.net/" in page.url.lower()
 
-def cas_login(page, login, password, currentpage):
+def cas_login(page, login, password):
 
-    print("Page actuelle detectee comme : " + currentpage)
+    if "cas.ent.auvergnerhonealpes.fr" in page.url.lower():
+        print("PAGE de connection à l'ENT en tant que : Elève ou parent")
+        # case a cocher
+        if page.locator('label[for="idp-EDU"]'):
+            print("input#idp-EDU : detecte")
+            page.locator('label[for="idp-EDU"]').click()
+        # boutons a cliquer :
+        if page.locator('#button-submit') :
+            print("#bouton_submit : detecte")
+            page.locator('#button-submit').hover()
+            page.wait_for_timeout(50)
+            page.locator('#button-submit').click()
+        return True
 
-    # champ a remplir :
-    if page.locator('input[name="username"]').count() > 0:
-        page.fill('input[name="username"]', login)
-        page.wait_for_timeout(100)
+    elif "SAML2" in page.url.lower():
+        if page.locator('#bouton_responsable'):
+            print("PAGE de selection du profil Pronote a utiliser (parent responsable)")
+            # PAGE de login SAML2
+            # PAGE de selection du profil Pronote a utiliser (parent responsable)
+            # boutons a cliquer :
+            print("#bouton_responsable : detecte")
+            page.locator('#bouton_responsable').hover()
+            page.locator('#bouton_responsable').click()
+            return True
 
-    if page.locator('input[name="password"]').count() > 0:
-        page.fill('input[name="password"]', login)
-        page.wait_for_timeout(100)
+        elif page.locator('input[name="username"]') and page.locator('input[name="password"]'):
+            print("PAGE de login a Pronote [login/pass]")
+            # PAGE de login SAML2
+            print("page d indent et pass detectee")
+            # champ a remplir :
+            # ident
+            page.fill('input[name="username"]', login)
+            # pass
+            page.fill('input[name="password"]', password)
+            # boutons a cliquer :
+            if page.locator('#bouton_valider'):
+                print("#bouton_valider : detecte")
+                page.locator('#bouton_valider').hover()
+                page.wait_for_timeout(50)
+                page.locator('#bouton_valider').click()
+            return True
 
-    # boutons a cliquer :
-    if page.locator('input#idp-EDU').count() > 0:
-        print("input#idp-EDU : detecte")
-        page.locator('label[for="idp-EDU"]').click()
-        page.wait_for_timeout(100)
-
-    if page.locator('#bouton_valider').count() > 0:
-        print("#bouton_valider : detecte")
-        #page.locator('#bouton_valider').click()
-        #page.wait_for_timeout(100)
-        btn = page.locator('#bouton_valider')
-        btn.wait_for(state="visible", timeout=1000)
-        page.wait_for_timeout(100)
-        btn.hover()
-        btn.click()
-        page.wait_for_timeout(100)
-
-    if page.locator('#bouton_responsable').count() > 0:
-        print("#bouton_responsable : detecte")
-        btn = page.locator('#bouton_responsable')
-        btn.wait_for(state="visible", timeout=1000)
-        page.wait_for_timeout(100)
-        btn.hover()
-        btn.click()
-        page.wait_for_timeout(100)
-
-    if page.locator('#button-submit').count() > 0:
-        print("#bouton_submit : detecte")
-        page.locator('#button-submit').click()
-        page.wait_for_timeout(100)
+        return True
+    return False
 
 
 def capture(response):
@@ -142,58 +147,50 @@ def main():
 
         page.goto(URL)
         page.wait_for_load_state("domcontentloaded")
+        current_url = page.url
 
         while not is_logged_in(page):
-            # WAIT CAS
-            page.wait_for_load_state("domcontentloaded")
-            pagestart = page.url
-            print("⏳ auth en cours:", pagestart)
+            if current_url != page.url:
+                page.wait_for_load_state("domcontentloaded")
+                print("⏳ auth en cours:", page.url)
+            else:
+                print("⏳ auth en cours (stage 2):", page.url)
 
 
-            # 2. WAIT GLOBAL AUTH FLOW
+            # WAIT GLOBAL AUTH FLOW
             loop = True
             while loop :
-                cas_login(page, LOGIN, PASSWORD, in_auth_flow(page))
-                newpage = page.url
-                if pagestart != newpage:
+                if cas_login(page, LOGIN, PASSWORD):
                     loop = False
 
-        print("✅ sortie auth:", page.url)
 
-        # 🔁 re-check si on est bien connecte
-        if not is_logged_in(page):
-            print("✅ sortie auth:", page.url)
-            print(page.url)
-            print(page.locator("button").count())
-            print("❌ login échoué")
-            context.close()
-            exit()
-        else:
-            print("✅ connecté PRONOTE")
+        print("✅ sortie auth:", page.url)
+        print("✅ connecté PRONOTE")
 
         # Attendre le chargement de la page
         page.wait_for_load_state("domcontentloaded")
 
-        # 🔥 IMPORTANT : attendre navigation réelle
-        page.wait_for_url("**cas.ent**")
-
         if MYDEBUG:
+            print("-----------------------------")
             print("URL:", page.url)
             print("-----------------------------")
             print(page.content())
             print("-----------------------------")
             print("boutons:", page.locator("button").count())
-
-        # attendre redirection PRONOTE
-        page.wait_for_timeout(3000)
-        page.wait_for_load_state("networkidle")
+            print("-----------------------------")
 
 
         if MYDEBUG:
             # detection des frames
+            print("-----------------------------")
             print("FRAMES List:")
             for frame in page.frames:
+                print("-----------------------------")
                 print(frame.url)
+                print("-----------------------------")
+            print("-----------------------------")
+
+
 
         # cliquer sur l’onglet notes (très important)
         # page.locator("#id_77id_44").click() # id du bouton pour voir les notes =)
