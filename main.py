@@ -148,16 +148,16 @@ def main():
         page.goto(URL)
         page.wait_for_load_state("domcontentloaded")
         current_url = page.url
+        nbloop = 0
 
         while not is_logged_in(page):
-            if current_url != page.url:
+            if current_url == page.url and nbloop >= 1:
+                print("⏳ auth en cours (stage 2):", page.url)
+            else:
                 page.wait_for_load_state("domcontentloaded")
                 print("⏳ auth en cours:", page.url)
-            else:
-                print("⏳ auth en cours (stage 2):", page.url)
-
-
             # WAIT GLOBAL AUTH FLOW
+            nbloop += 1
             loop = True
             while loop :
                 if cas_login(page, LOGIN, PASSWORD):
