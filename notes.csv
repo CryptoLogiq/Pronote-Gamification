@@ -1,1 +1,12 @@
 matiere,note,bareme,date,periode,moyenne_matiere,coefficient,note_max,note_min,commentaire,commentaire_sur_note,est_bonus,est_facultatif,est_en_groupe,couleur_matiere,libelle_sujet,libelle_corrige
+MATHEMATIQUES > MATHEMATIQUES,14,20,03/04/2026,Trimestre 3,"13,76",0.2,19,4,Automatismes18,A corriger au Kiosque avec un.e camarade qui t'entraîne.,False,False,False,#F51C0A,Automatisme et travail mental Test n°18 5ème.pdf,Automatisme et travail mental Test n°18 5ème CORRECTION.pdf
+TECHNOLOGIE,14,20,12/03/2026,Trimestre 3,"17,54",1.0,20,14,,,False,False,False,#FFED00,,
+MATHEMATIQUES > MATHEMATIQUES,11,18,13/03/2026,Trimestre 3,"12,46",0.2,18,2,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
+ANGLAIS LV1,20,20,13/03/2026,Trimestre 3,"15,86",0.5,20,4,,,False,False,False,#F906ED,,
+ANGLAIS LV1,17,20,13/03/2026,Trimestre 3,"18,25",0.5,20,10,,,False,False,False,#F906ED,,
+ARTS PLASTIQUES,10,20,16/03/2026,Trimestre 3,"13,8",1.0,20,8,Sortir de la case,,False,False,False,#F6F0B5,,
+MATHEMATIQUES > MATHEMATIQUES,|2,20,13/03/2026,Trimestre 3,20,0.2,20,20,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
+ESPAGNOL LV2,2,5,30/03/2026,Trimestre 3,"4,45",1.0,5,2,cartel superhéroe del plurilinguismo,,False,False,True,#41768B,,
+SCIENCES VIE & TERRE,4,20,17/03/2026,Trimestre 3,"8,72",1.0,"17,5",0,DS5 Nutrition animale,,False,False,True,#5C782A,,
+ANGLAIS LV1,9,20,13/04/2026,Trimestre 3,"13,72",2.0,20,7,,,False,False,False,#F906ED,,
+HISTOIRE-GEOGRAPHIE,"4,5",20,21/04/2026,Trimestre 3,"11,52",1.0,18,"4,5",Bilan Contacts,,False,False,False,#45F50A,,

@@ -6,6 +6,9 @@ import os
 import csv
 
 
+# =========================
+# CONFIG / CREDENTIALS
+# =========================
 def load_credentials():
     filename = "credentials.json"
     template = {
@@ -18,18 +21,16 @@ def load_credentials():
     }
     required_keys = {"login", "password", "url", "jj", "mm", "aa"}
 
-    # 🆕 créer le fichier s'il n'existe pas
     if not os.path.exists(filename):
         print("⚠️ credentials.json introuvable → création d'un fichier modèle")
 
         with open(filename, "w", encoding="utf-8") as f:
-            json.dump(template, f, indent=4)
+            json.dump(template, f, indent=4, ensure_ascii=False)
 
         print("✅ Fichier credentials.json créé")
         print("👉 Remplis-le puis relance le script")
         sys.exit(1)
 
-    # 🔐 lecture du fichier
     try:
         with open(filename, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -40,6 +41,10 @@ def load_credentials():
         mm = data.get("mm", "").strip()
         aa = data.get("aa", "").strip()
         url = data.get("url", "").strip()
+
+        if set(data.keys()) != required_keys:
+            print("❌ credentials.json mal formé")
+            sys.exit(1)
 
         if (
             not login or
@@ -59,11 +64,7 @@ def load_credentials():
             print("👉 Remplis les champs login / password / jj / mm / aa / url")
             sys.exit(1)
 
-        if set(data.keys()) != required_keys:
-            print("❌ credentials.json mal formé")
-            sys.exit(1)
-
-        credentials = {
+        return {
             "login": login,
             "password": password,
             "jj": jj,
@@ -71,28 +72,25 @@ def load_credentials():
             "aa": aa,
             "url": url
         }
-        return credentials
 
     except json.JSONDecodeError:
         print("❌ credentials.json invalide (JSON corrompu)")
         sys.exit(1)
 
 
-# 🔐 LOAD CONFIG/SETTINGS SCRIPT
 Creds = load_credentials()
 DEBUG = True
 
-# 🧠 STATES
-STATE_WAYF = "WAYF"
-STATE_LOGIN = "LOGIN"
-STATE_PROFILE = "PROFILE"
-STATE_PRONOTE = "PRONOTE"
 
-# CSV
+# =========================
+# GLOBAL DATA STORAGE
+# =========================
 raw_responses = []
-notes_rows = []
 
 
+# =========================
+# DEBUG HELPERS
+# =========================
 def debug_hold(page, reason=""):
     if DEBUG:
         print("\n================ DEBUG HOLD ================")
@@ -110,51 +108,32 @@ def debug_hold(page, reason=""):
         input()
 
 
-# 🔍 DETECTION D'ÉTAT
-def detect_state(page):
-    url = page.url.lower()
-
-    if "pronote" in url and "cas" not in url:
-        return STATE_PRONOTE
-
-    if "cas" in url and page.locator('label[for="idp-EDU"]').count() > 0:
-        return STATE_WAYF
-
-    if page.locator('input[name="username"]').count() > 0:
-        return STATE_LOGIN
-
-    if page.locator('#bouton_responsable').count() > 0:
-        return STATE_PROFILE
-
-    return None
-
-
-# 🎯 ACTIONS PAR ÉTAT
-def handle_wayf(page):
-    print("➡️ WAYF (ENT)")
-    page.locator('label[for="idp-EDU"]').click()
-    page.locator('#button-submit').click()
-
-
-def handle_login(page, login, password):
-    print("➡️ LOGIN (EduConnect)")
-    page.fill('input[name="username"]', login)
-    page.fill('input[name="password"]', password)
-    page.locator('button[type="submit"]').click()
-
-
-def handle_profile(page):
-    print("➡️ PROFILE (Parent d'élèves)")
-    btn = page.locator('#bouton_responsable')
-
+def detect_connection_refused(page):
     try:
-        btn.wait_for(state="visible", timeout=3000)
-        page.wait_for_timeout(500)
-        btn.click()
+        body_text = page.locator("body").inner_text().lower()
     except Exception:
-        print("⚠️ bouton profil non prêt, retry...")
+        return False
+
+    refused_markers = [
+        "connexion refusée",
+        "accès refusé",
+        "authentification refusée",
+        "identifiant ou mot de passe incorrect",
+        "identifiant incorrect",
+        "mot de passe incorrect",
+        "erreur d'authentification",
+        "compte bloqué",
+        "compte désactivé",
+        "vous ne pouvez pas accéder",
+        "accès non autorisé"
+    ]
+
+    return any(marker in body_text for marker in refused_markers)
 
 
+# =========================
+# AUTH FLOW HELPERS
+# =========================
 def fill_identity_and_validate(page, creds):
     day = page.locator('input[name="jour"]')
     month = page.locator('input[name="mois"]')
@@ -196,30 +175,7 @@ def fill_identity_and_validate(page, creds):
         page.wait_for_timeout(200)
         btn.click(force=True)
 
-def detect_connection_refused(page):
-    try:
-        body_text = page.locator("body").inner_text().lower()
-    except Exception:
-        return False
 
-    refused_markers = [
-        "connexion refusée",
-        "accès refusé",
-        "authentification refusée",
-        "identifiant ou mot de passe incorrect",
-        "identifiant incorrect",
-        "mot de passe incorrect",
-        "erreur d'authentification",
-        "compte bloqué",
-        "compte désactivé",
-        "vous ne pouvez pas accéder",
-        "accès non autorisé"
-    ]
-
-    return any(marker in body_text for marker in refused_markers)
-
-
-# 🔁 MACHINE À ÉTATS
 def run_auth_flow(page, creds, timeout=60):
     start = time.time()
     step = 0
@@ -231,7 +187,6 @@ def run_auth_flow(page, creds, timeout=60):
             return False
 
         page.wait_for_timeout(500)
-
         print(f"🔎 STEP {step} | URL → {page.url}")
 
         if detect_connection_refused(page):
@@ -241,7 +196,7 @@ def run_auth_flow(page, creds, timeout=60):
         # 0️⃣ WAYF
         if step == 0:
             if page.locator('#idp-EDU').count() > 0:
-                print("➡️ WAYF eleves ou Parent [case a cocher]")
+                print("➡️ WAYF eleves ou Parent [case à cocher]")
                 page.locator('label[for="idp-EDU"]').click()
                 page.locator('#button-submit').click()
                 step += 1
@@ -254,7 +209,6 @@ def run_auth_flow(page, creds, timeout=60):
 
             if btn.count() > 0:
                 print("➡️ PROFILE [Parent Responsable]")
-
                 try:
                     btn.click(timeout=2000)
                 except Exception:
@@ -269,17 +223,25 @@ def run_auth_flow(page, creds, timeout=60):
             if page.locator('input[name="j_username"]').count() > 0:
                 print("➡️ LOGIN + MDP")
 
-                page.fill('input[name="j_username"]', creds["login"])
+                user = page.locator('input[name="j_username"]')
+                pwd = page.locator('input[name="j_password"]')
+
+                user.click()
+                user.press("Control+A")
+                user.press("Backspace")
+                user.fill(creds["login"])
                 page.wait_for_timeout(150)
 
-                page.fill('input[name="j_password"]', creds["password"])
+                pwd.click()
+                pwd.press("Control+A")
+                pwd.press("Backspace")
+                pwd.fill(creds["password"])
                 page.wait_for_timeout(150)
 
                 btn = page.locator('#bouton_valider')
 
                 if btn.count() > 0:
                     print("➡️ LOGIN submit")
-
                     try:
                         btn.wait_for(state="visible", timeout=5000)
                         btn.scroll_into_view_if_needed()
@@ -300,9 +262,10 @@ def run_auth_flow(page, creds, timeout=60):
         # 3️⃣ VERIFY (optionnel)
         elif step == 3:
             if page.locator('input[name="jour"]').count() > 0:
-                print("➡️ VERIF identité (date naissance d'un de vos enfant)")
+                print("➡️ VERIF identité (date naissance d'un de vos enfants)")
                 fill_identity_and_validate(page, creds)
                 step += 1
+                page.wait_for_timeout(1200)
                 continue
             else:
                 step += 1
@@ -311,11 +274,15 @@ def run_auth_flow(page, creds, timeout=60):
 
         # 4️⃣ PRONOTE
         elif step == 4:
-            if "pronote" in page.url.lower() or "identifiant" in page.url.lower() or creds["url"] in page.url :
+            if (
+                "pronote" in page.url.lower() or
+                "identifiant" in page.url.lower() or
+                creds["url"] in page.url
+            ):
                 print("✅ PRONOTE OK")
                 return True
 
-            print("⚠️ fallback, tentative d'acces direct a PRONOTE en rechargeant la page url cible")
+            print("⚠️ fallback, tentative d'accès direct à PRONOTE en rechargeant l'URL cible")
             page.goto(creds["url"])
             step += 1
             page.wait_for_timeout(1200)
@@ -324,12 +291,18 @@ def run_auth_flow(page, creds, timeout=60):
         # 5️⃣ Validation après fallback
         elif step == 5:
             print(f"🔎 STEP {step} | URL → {page.url}")
-            if "pronote" in page.url.lower() or "identifiant" in page.url.lower() or creds["url"] in page.url :
+
+            if (
+                "pronote" in page.url.lower() or
+                "identifiant" in page.url.lower() or
+                creds["url"] in page.url
+            ):
                 print("✅ PRONOTE OK")
                 return True
 
             print("❌ fallback effectué mais PRONOTE non atteint")
             step = 0
+
             if loop == 0:
                 loop += 1
                 page.wait_for_timeout(1200)
@@ -337,10 +310,12 @@ def run_auth_flow(page, creds, timeout=60):
             else:
                 return False
 
-
         page.wait_for_timeout(500)
 
 
+# =========================
+# NETWORK CAPTURE
+# =========================
 def capture(response):
     if "appelfonction" not in response.url:
         return
@@ -352,6 +327,20 @@ def capture(response):
     except Exception:
         pass
 
+
+def log_all_responses(response):
+    try:
+        if "appelfonction" in response.url:
+            print("\n=== URL ===")
+            print(response.url)
+            print(response.text()[:300])
+    except Exception:
+        pass
+
+
+# =========================
+# JSON EXPORTS
+# =========================
 def save_all_responses_to_json(filename="pronote_raw_responses.json"):
     grouped = {}
 
@@ -372,80 +361,36 @@ def save_all_responses_to_json(filename="pronote_raw_responses.json"):
 
     print(f"✅ JSON brut sauvegardé dans : {filename}")
 
+
 def save_raw_responses_flat(filename="pronote_raw_responses_flat.json"):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(raw_responses, f, indent=2, ensure_ascii=False)
 
     print(f"✅ JSON brut à plat sauvegardé dans : {filename}")
 
-def go_to_notes(context, page, timeout=30):
-    start = time.time()
 
-    page.on("response", extract_notes)
-    page.on("response", log_all_responses)
-    page.on("response", capture)
+def _get_dernieres_notes_payloads(raw_responses_list):
+    payloads = []
 
-    clicked = False
-
-    while time.time() - start <= timeout:
-        for frame in page.frames:
-            btn = frame.locator('#id_77id_44')
-            if btn.count() > 0:
-                try:
-                    btn.wait_for(state="visible", timeout=3000)
-                    btn.scroll_into_view_if_needed()
-                    page.wait_for_timeout(300)
-                    btn.click(timeout=3000)
-                    clicked = True
-                    print("✅ bouton 'Tout voir' cliqué")
-                    page.wait_for_timeout(1200)
-                    break
-                except Exception:
-                    try:
-                        frame.evaluate("document.querySelector('#id_77id_44').click()")
-                        clicked = True
-                        print("✅ bouton 'Tout voir' cliqué via JS")
-                        break
-                    except Exception:
-                        pass
-
-        if clicked:
-            break
-
-        page.wait_for_timeout(500)
-
-    if not clicked:
-        print("❌ bouton #id_77id_44 introuvable ou non cliquable")
-        return False
-
-    # laisse le temps aux requêtes de partir et revenir
-    page.wait_for_timeout(5000)
-
-    # sauvegarde tout ce qu'on a reçu
-    save_all_responses_to_json()
-    save_raw_responses_flat()
-
-    print("✅ dump JSON terminé")
-    return True
-
-
-def log_all_responses(response):
-    try:
-        if "appelfonction" in response.url:
-            print("\n=== URL ===")
-            print(response.url)
-            print(response.text()[:300])
-    except Exception:
-        pass
-def export_notes_csv(raw_responses, filename="notes.csv"):
-    rows = []
-
-    for item in raw_responses:
+    for item in raw_responses_list:
         data = item.get("data", {})
         if data.get("id") != "DernieresNotes":
             continue
 
         payload = data.get("dataSec", {}).get("data", {})
+        if payload:
+            payloads.append(payload)
+
+    return payloads
+
+
+# =========================
+# CSV EXPORTS
+# =========================
+def export_notes_csv(raw_responses_list, filename="notes.csv"):
+    rows = []
+
+    for payload in _get_dernieres_notes_payloads(raw_responses_list):
         devoirs = payload.get("listeDevoirs", {}).get("V", [])
 
         for devoir in devoirs:
@@ -482,15 +427,11 @@ def export_notes_csv(raw_responses, filename="notes.csv"):
 
     print(f"✅ {filename} généré ({len(rows)} lignes)")
 
-def export_services_csv(raw_responses, filename="services.csv"):
+
+def export_services_csv(raw_responses_list, filename="services.csv"):
     rows = []
 
-    for item in raw_responses:
-        data = item.get("data", {})
-        if data.get("id") != "DernieresNotes":
-            continue
-
-        payload = data.get("dataSec", {}).get("data", {})
+    for payload in _get_dernieres_notes_payloads(raw_responses_list):
         services = payload.get("listeServices", {}).get("V", [])
 
         for service in services:
@@ -517,16 +458,11 @@ def export_services_csv(raw_responses, filename="services.csv"):
 
     print(f"✅ {filename} généré ({len(rows)} lignes)")
 
-def export_resume_csv(raw_responses, filename="resume.csv"):
+
+def export_resume_csv(raw_responses_list, filename="resume.csv"):
     rows = []
 
-    for item in raw_responses:
-        data = item.get("data", {})
-        if data.get("id") != "DernieresNotes":
-            continue
-
-        payload = data.get("dataSec", {}).get("data", {})
-
+    for payload in _get_dernieres_notes_payloads(raw_responses_list):
         rows.append({
             "moy_generale": payload.get("moyGenerale", {}).get("V", ""),
             "moy_generale_classe": payload.get("moyGeneraleClasse", {}).get("V", ""),
@@ -547,10 +483,14 @@ def export_resume_csv(raw_responses, filename="resume.csv"):
 
     print(f"✅ {filename} généré ({len(rows)} lignes)")
 
+
+# =========================
+# PRONOTE NOTES PAGE
+# =========================
 def go_to_notes(context, page, timeout=30):
     start = time.time()
 
-    # étape 1 : on capture tout, sans parser les notes
+    # on capture tout AVANT le clic
     page.on("response", log_all_responses)
     page.on("response", capture)
 
@@ -582,25 +522,29 @@ def go_to_notes(context, page, timeout=30):
 
         page.wait_for_timeout(500)
 
-        export_notes_csv(raw_responses)
-        export_services_csv(raw_responses)
-        export_resume_csv(raw_responses)
-
     if not clicked:
         print("❌ bouton #id_77id_44 introuvable ou non cliquable")
         return False
 
-    # on laisse le temps aux réponses de revenir
+    # on laisse le temps aux réponses réseau d'arriver
     page.wait_for_timeout(5000)
 
+    # sauvegarde du JSON brut
     save_all_responses_to_json()
     save_raw_responses_flat()
 
-    print("✅ dump JSON terminé")
+    # export CSV APRÈS réception des réponses
+    export_notes_csv(raw_responses)
+    export_services_csv(raw_responses)
+    export_resume_csv(raw_responses)
+
+    print("✅ dump JSON + CSV terminés")
     return True
 
 
-# 🚀 MAIN
+# =========================
+# MAIN
+# =========================
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=not DEBUG)
     context = browser.new_context()
@@ -631,7 +575,7 @@ with sync_playwright() as p:
 
     print("✅ tout est OK")
 
-    # Optionnel : garder ouvert aussi quand tout marche
+    # Décommente si tu veux garder la fenêtre ouverte même quand tout marche
     # if DEBUG:
     #     debug_hold(page, "Fin normale du script")
 
