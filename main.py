@@ -1,8 +1,11 @@
+from xxlimited_35 import Null
+
 from playwright.sync_api import sync_playwright
 import time
 import json
 import sys
 import os
+import csv
 
 def load_credentials():
     filename = "credentials.json"
@@ -93,6 +96,9 @@ STATE_WAYF = "WAYF"
 STATE_LOGIN = "LOGIN"
 STATE_PROFILE = "PROFILE"
 STATE_PRONOTE = "PRONOTE"
+
+# Csv
+notes = []
 
 
 # 🔍 DETECTION D'ÉTAT
@@ -295,6 +301,84 @@ def run_auth_flow(page, creds, timeout=60):
         # on wait si pas de conditions valide (page/dom pas fini de chargé ou pas synchro)
         page.wait_for_timeout(500)
 
+raw_responses = []
+notes_rows = []
+
+def capture(response):
+    if "appelfonction" not in response.url:
+        return
+    try:
+        raw_responses.append({
+            "url": response.url,
+            "data": response.json()
+        })
+    except Exception:
+        pass
+
+def extract_notes(response):
+    if "DernieresNotes" not in response.url:
+        return
+    try:
+        data = response.json()
+        for matiere in data.get("donnees", {}).get("listeMatieres", []):
+            nom_matiere = matiere.get("nom")
+            for note in matiere.get("listeNotes", []):
+                notes_rows.append({
+                    "matiere": nom_matiere,
+                    "note": note.get("note"),
+                    "bareme": note.get("bareme"),
+                    "date": note.get("date")
+                })
+    except Exception as e:
+        print("Erreur extraction:", e)
+
+def go_to_notes(context, page, timeout=30):
+    start = time.time()
+
+    page.on("response", extract_notes)
+    page.on("response", log_all_responses)
+    page.on("response", capture)
+
+    clicked = False
+
+    while time.time() - start <= timeout:
+        for frame in page.frames:
+            btn = frame.locator('#id_77id_44')
+            if btn.count() > 0:
+                try:
+                    btn.wait_for(state="visible", timeout=3000)
+                    btn.scroll_into_view_if_needed()
+                    page.wait_for_timeout(300)
+                    btn.click(timeout=3000)
+                    clicked = True
+                    print("✅ bouton 'Tout voir' cliqué")
+                    break
+                except Exception:
+                    try:
+                        frame.evaluate("document.querySelector('#id_77id_44').click()")
+                        clicked = True
+                        print("✅ bouton 'Tout voir' cliqué via JS")
+                        break
+                    except Exception:
+                        pass
+        if clicked:
+            break
+        page.wait_for_timeout(500)
+
+    if not clicked:
+        print("❌ bouton #id_77id_44 introuvable ou non cliquable")
+        return False
+
+    page.wait_for_timeout(3000)
+
+    with open("notes.csv", "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["matiere", "note", "bareme", "date"])
+        writer.writeheader()
+        writer.writerows(notes_rows)
+
+    print("✅ CSV généré !")
+    return True
+
 
 # 🚀 MAIN
 with sync_playwright() as p:
@@ -317,9 +401,4 @@ with sync_playwright() as p:
 
     print("🎯 PRONOTE prêt !")
 
-    # ⏳ laisse ouvert pour debug
-    if DEBUG:
-        print("👀 navigateur laissé ouvert pour inspection")
-        time.sleep(9999)
-
-    context.close()
+    go_to_notes(context, page)
