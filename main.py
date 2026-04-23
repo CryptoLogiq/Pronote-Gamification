@@ -1,230 +1,133 @@
-from pip._internal.utils import retry
 from playwright.sync_api import sync_playwright
-import json
-import csv
 import time
 
-LOGIN = "f.simonin128"
-PASSWORD = "FloFs131102&"
+# 🔐 CONFIG
+LOGIN = "TON_LOGIN"
+PASSWORD = "TON_PASSWORD"
 URL = "https://0383301g.index-education.net/pronote/mobile.parent.html"
-current_page = ""
 
-MYDEBUG = True
-
-notes_data = []
-
-notes = []
-
-def in_auth_flow(page):
-    if "cas" in page.url.lower():
-        if "login" in page.url.lower():
-            return "cas login"
-        elif "redirect" in page.url.lower():
-            return "cas client redirect"
-    elif "educonnect" in page.url.lower():
-        return "educonnect"
-    elif "saml" in page.url.lower():
-        return "saml"
-    else:
-        return "page inconnu : " + page.url.lower()
+DEBUG = True
 
 
-def is_logged_in(page):
-    return "0383301g.index-education.net/" in page.url.lower()
-
-def cas_login(page, login, password):
-
-    if "cas.ent.auvergnerhonealpes.fr" in page.url.lower():
-        print("PAGE de connection à l'ENT en tant que : Elève ou parent")
-        # case a cocher
-        if page.locator('label[for="idp-EDU"]'):
-            print("input#idp-EDU : detecte")
-            page.locator('label[for="idp-EDU"]').click()
-        # boutons a cliquer :
-        if page.locator('#button-submit') :
-            print("#bouton_submit : detecte")
-            page.locator('#button-submit').hover()
-            page.wait_for_timeout(50)
-            page.locator('#button-submit').click()
-        return True
-
-    elif "SAML2" in page.url.lower():
-        if page.locator('#bouton_responsable'):
-            print("PAGE de selection du profil Pronote a utiliser (parent responsable)")
-            # PAGE de login SAML2
-            # PAGE de selection du profil Pronote a utiliser (parent responsable)
-            # boutons a cliquer :
-            print("#bouton_responsable : detecte")
-            page.locator('#bouton_responsable').hover()
-            page.locator('#bouton_responsable').click()
-            return True
-
-        elif page.locator('input[name="username"]') and page.locator('input[name="password"]'):
-            print("PAGE de login a Pronote [login/pass]")
-            # PAGE de login SAML2
-            print("page d indent et pass detectee")
-            # champ a remplir :
-            # ident
-            page.fill('input[name="username"]', login)
-            # pass
-            page.fill('input[name="password"]', password)
-            # boutons a cliquer :
-            if page.locator('#bouton_valider'):
-                print("#bouton_valider : detecte")
-                page.locator('#bouton_valider').hover()
-                page.wait_for_timeout(50)
-                page.locator('#bouton_valider').click()
-            return True
-
-        return True
-    return False
+# 🧠 STATES
+STATE_WAYF = "WAYF"
+STATE_LOGIN = "LOGIN"
+STATE_PROFILE = "PROFILE"
+STATE_PRONOTE = "PRONOTE"
 
 
-def capture(response):
-    if "appelfonction" not in response.url:
-        return
+# 🔍 DETECTION D'ÉTAT
+def detect_state(page):
+    url = page.url.lower()
+
+    if "pronote" in url:
+        return STATE_PRONOTE
+
+    if page.locator('label[for="idp-EDU"]').count() > 0:
+        return STATE_WAYF
+
+    if page.locator('input[name="username"]').count() > 0:
+        return STATE_LOGIN
+
+    if page.locator('#bouton_responsable').count() > 0:
+        return STATE_PROFILE
+
+    return None
+
+
+# 🎯 ACTIONS PAR ÉTAT
+def handle_wayf(page):
+    print("➡️ WAYF (ENT)")
+    page.locator('label[for="idp-EDU"]').click()
+    page.locator('#button-submit').click()
+
+
+def handle_login(page, login, password):
+    print("➡️ LOGIN (EduConnect)")
+    page.fill('input[name="username"]', login)
+    page.fill('input[name="password"]', password)
+    page.locator('button[type="submit"]').click()
+
+
+def handle_profile(page):
+    print("➡️ PROFILE (Parent d'élèves)")
+    btn = page.locator('#bouton_responsable')
 
     try:
-        data = response.json()
+        btn.wait_for(state="visible", timeout=3000)
+        page.wait_for_timeout(500)  # laisse le DOM respirer
+        btn.click()
+    except:
+        print("⚠️ bouton profil non prêt, retry...")
 
-        # debug obligatoire
-        print("URL:", response.url)
 
-        # sauvegarde brute pour analyse
-        notes.append({
-            "url": response.url,
-            "data": data
-        })
-    finally:
+# 🔁 MACHINE À ÉTATS
+def run_auth_flow(page, login, password, timeout=60):
+    start = time.time()
+    last_state = None
+
+    while True:
+        if time.time() - start > timeout:
+            print("❌ TIMEOUT GLOBAL")
+            return False
+
+        page.wait_for_timeout(500)
+
+        state = detect_state(page)
+
+        # DEBUG propre
+        if state != last_state:
+            print(f"🔎 STATE → {state} | URL → {page.url}")
+            last_state = state
+
+        if state == STATE_WAYF:
+            handle_wayf(page)
+            continue
+
+        if state == STATE_LOGIN:
+            handle_login(page, login, password)
+            continue
+
+        if state == STATE_PROFILE:
+            handle_profile(page)
+            continue
+
+        if state == STATE_PRONOTE:
+            print("✅ PRONOTE atteint")
+            return True
+
+        # état inconnu → on attend
+        # utile pendant les transitions SAML
         pass
 
 
+# 🚀 MAIN
+with sync_playwright() as p:
 
-def extract_notes(response):
-    global notes_data
+    context = p.chromium.launch_persistent_context(
+        user_data_dir="./profile",
+        headless=not DEBUG,
+        args=["--start-maximized"]
+    )
 
-    try:
-        if "DernieresNotes" in response.url:
-            data = response.json()
+    # ⚠️ important avec persistent context
+    page = context.pages[0] if context.pages else context.new_page()
 
-            # DEBUG : voir la structure réelle
-            print(json.dumps(data, indent=2))
+    print("🌐 ouverture URL")
+    page.goto(URL)
 
-            # ⚠️ à adapter selon structure réelle
-            for matiere in data.get("donnees", {}).get("listeMatieres", []):
-                nom_matiere = matiere.get("nom")
+    success = run_auth_flow(page, LOGIN, PASSWORD)
 
-                for note in matiere.get("listeNotes", []):
-                    notes_data.append({
-                        "matiere": nom_matiere,
-                        "note": note.get("note"),
-                        "bareme": note.get("bareme"),
-                        "date": note.get("date")
-                    })
-
-    except Exception as e:
-        print("Erreur extraction:", e)
-
-def log_all_responses(response):
-    try:
-        if "appelfonction" in response.url:
-            print("\n=== URL ===")
-            print(response.url)
-            print(response.text()[:300])
-    finally:
-        pass
-
-
-def main():
-    with sync_playwright() as p:
-
-        context = p.chromium.launch_persistent_context(
-            user_data_dir="./profile",  # dossier local
-            headless= not MYDEBUG
-        )
-        page = context.new_page()
-        page.wait_for_load_state("domcontentloaded")
-
-        page.goto(URL)
-        page.wait_for_load_state("domcontentloaded")
-        current_url = page.url
-        nbloop = 0
-
-        while not is_logged_in(page):
-            if current_url == page.url and nbloop >= 1:
-                print("⏳ auth en cours (stage 2):", page.url)
-            else:
-                page.wait_for_load_state("domcontentloaded")
-                print("⏳ auth en cours:", page.url)
-            # WAIT GLOBAL AUTH FLOW
-            nbloop += 1
-            loop = True
-            while loop :
-                if cas_login(page, LOGIN, PASSWORD):
-                    loop = False
-
-
-        print("✅ sortie auth:", page.url)
-        print("✅ connecté PRONOTE")
-
-        # Attendre le chargement de la page
-        page.wait_for_load_state("domcontentloaded")
-
-        if MYDEBUG:
-            print("-----------------------------")
-            print("URL:", page.url)
-            print("-----------------------------")
-            print(page.content())
-            print("-----------------------------")
-            print("boutons:", page.locator("button").count())
-            print("-----------------------------")
-
-
-        if MYDEBUG:
-            # detection des frames
-            print("-----------------------------")
-            print("FRAMES List:")
-            for frame in page.frames:
-                print("-----------------------------")
-                print(frame.url)
-                print("-----------------------------")
-            print("-----------------------------")
-
-
-
-        # cliquer sur l’onglet notes (très important)
-        # page.locator("#id_77id_44").click() # id du bouton pour voir les notes =)
-        # page.get_by_text("Notes").click() # n'existe pas en mode "mobile"
-
-        for frame in page.frames:
-            btn = frame.locator('button[aria-label="Tout voir"]')
-            if btn.count() > 0:
-                print("Trouvé dans frame:", frame.url)
-                btn.first.click()
-                break
-
-        if MYDEBUG:
-            print(page.content()[:2000])
-
-
-        #page.on("response", extract_notes)
-        page.on("response", log_all_responses)
-        page.on("response", capture)
-
-        # attendre chargement des données
-        time.sleep(100)
-
+    if not success:
+        print("❌ login échoué")
         context.close()
+        exit()
 
-main()
+    print("🎯 PRONOTE prêt !")
 
-#Apres la navigation
-print(json.dumps(notes[:1], indent=2))
+    # ⏳ laisse ouvert pour debug
+    if DEBUG:
+        print("👀 navigateur laissé ouvert pour inspection")
+        time.sleep(9999)
 
-# 💾 Export CSV
-with open("notes.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(f, fieldnames=["matiere", "note", "bareme", "date"])
-    writer.writeheader()
-    writer.writerows(notes_data)
-
-print("✅ CSV généré !")
+    context.close()
