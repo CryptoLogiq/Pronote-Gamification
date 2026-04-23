@@ -1,12 +1,85 @@
 from playwright.sync_api import sync_playwright
 import time
+import json
+import sys
 
-# 🔐 CONFIG
-LOGIN = "f.simonin128"
-PASSWORD = "FloFs131102&"
-URL = "https://0383301g.index-education.net/pronote/mobile.parent.html"
+import json
+import sys
+import os
 
+TEMPLATE = {
+    "login": "your_login_here",
+    "password": "your_password_here",
+    "url": "https://your_pronote_url_here"
+}
+
+required_keys = {"login", "password", "url"}
+
+def load_credentials():
+    filename = "credentials.json"
+
+    # 🆕 créer le fichier s'il n'existe pas
+    if not os.path.exists(filename):
+        print("⚠️ credentials.json introuvable → création d'un fichier modèle")
+
+        template = {
+            "login": "your_login_here",
+            "password": "your_password_here",
+            "url": "https://your_pronote_url_here"
+        }
+
+        with open(filename, "w") as f:
+            json.dump(template, f, indent=4)
+
+        print("✅ Fichier credentials.json créé")
+        print("👉 Remplis-le puis relance le script")
+
+        sys.exit(1)
+
+    # 🔐 lecture du fichier
+    try:
+        with open(filename, "r") as f:
+            data = json.load(f)
+
+        login = data.get("login", "").strip()
+        password = data.get("password", "").strip()
+        url = data.get("url", "").strip()
+
+        # ❌ détecter si utilisateur n'a pas rempli
+        if (
+            not login or
+            not password or
+            not url or
+            login == TEMPLATE["login"] or
+            password == TEMPLATE["password"] or
+            url == TEMPLATE["url"]
+        ):
+            print("❌ credentials.json non configuré correctement")
+            print("👉 Remplis les champs login / password / url")
+            sys.exit(1)
+        elif set(data.keys()) != required_keys:
+            print("❌ credentials.json mal formé")
+            sys.exit(1)
+
+        return login, password, url
+
+    except json.JSONDecodeError:
+        print("❌ credentials.json invalide (JSON corrompu)")
+        sys.exit(1)
+
+# JSON FILE PARAMETERS
+# for use script you need to create a credentials.json file in your racine script (where your main.py is located)
+# {
+#   "login": "your_login_here",
+#   "password": "your_password_here",
+#   "url": "your_url_login_here" example : "https://0383301g.index-education.net/pronote/mobile.parent.html"
+# }
+
+
+# 🔐 LOAD CONFIG/SETTINGS SCRIPT
+LOGIN, PASSWORD, URL = load_credentials()
 DEBUG = True
+
 
 
 # 🧠 STATES
