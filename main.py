@@ -1,5 +1,4 @@
 from playwright.sync_api import sync_playwright
-import csv
 import time
 import json
 import sys
@@ -10,9 +9,12 @@ def load_credentials():
     template = {
         "login": "your_login_here",
         "password": "your_password_here",
+        "jj": "00",
+        "mm": "00",
+        "aa": "0000",
         "url": "https://your_pronote_url_here"
     }
-    required_keys = {"login", "password", "url"}
+    required_keys = {"login", "password", "url", "jj", "mm", "aa"}
 
     # 🆕 créer le fichier s'il n'existe pas
     if not os.path.exists(filename):
@@ -31,18 +33,29 @@ def load_credentials():
         with open(filename, "r") as f:
             data = json.load(f)
 
-        login = data.get("login", "").strip()
-        password = data.get("password", "").strip()
-        url = data.get("url", "").strip()
+            login = data.get("login", "").strip()
+            password = data.get("password", "").strip()
+            jj = data.get("jj", "").strip()
+            mm = data.get("mm", "").strip()
+            aa = data.get("aa", "").strip()
+            url = data.get("url", "").strip()
 
         # ❌ détecter si utilisateur n'a pas rempli
         if (
             not login or
             not password or
+            not jj or
+            not mm or
+            not aa or
             not url or
             login == template["login"] or
             password == template["password"] or
+            jj == template["jj"] or
+            mm == template["mm"] or
+            aa == template["aa"] or
+            password == template["password"] or
             url == template["url"]
+
         ):
             print("❌ credentials.json non configuré correctement")
             print("👉 Remplis les champs login / password / url")
@@ -51,24 +64,6 @@ def load_credentials():
         if set(data.keys()) != required_keys:
             print("❌ credentials.json mal formé")
             sys.exit(1)
-
-        return login, password, url
-
-    except json.JSONDecodeError:
-        print("❌ credentials.json invalide (JSON corrompu)")
-        sys.exit(1)
-
-# JSON FILE PARAMETERS
-# for use script you need to create a credentials.json file in your racine script (where your main.py is located)
-# {
-#   "login": "your_login_here",
-#   "password": "your_password_here",
-#   "url": "your_url_login_here" example : "https://0383301g.index-education.net/pronote/mobile.parent.html"
-# }
-
-
-# 🔐 LOAD CONFIG/SETTINGS SCRIPT
-LOGIN, PASSWORD, URL = load_credentials()
 
 
         credentials = {"login":login, "password":password, "jj":jj, "mm":mm, "aa":aa, "url":url}
@@ -289,7 +284,6 @@ def run_auth_flow(page, creds, timeout=60):
             # fallback si stuck
             print("⚠️ fallback accès PRONOTE direct")
             page.goto(creds["url"])
-            page.wait_for_timeout(500)
             step += 1
             continue
 
