@@ -2,31 +2,20 @@ from playwright.sync_api import sync_playwright
 import time
 import json
 import sys
-
-import json
-import sys
 import os
-
-TEMPLATE = {
-    "login": "your_login_here",
-    "password": "your_password_here",
-    "url": "https://your_pronote_url_here"
-}
-
-required_keys = {"login", "password", "url"}
 
 def load_credentials():
     filename = "credentials.json"
+    template = {
+        "login": "your_login_here",
+        "password": "your_password_here",
+        "url": "https://your_pronote_url_here"
+    }
+    required_keys = {"login", "password", "url"}
 
     # 🆕 créer le fichier s'il n'existe pas
     if not os.path.exists(filename):
         print("⚠️ credentials.json introuvable → création d'un fichier modèle")
-
-        template = {
-            "login": "your_login_here",
-            "password": "your_password_here",
-            "url": "https://your_pronote_url_here"
-        }
 
         with open(filename, "w") as f:
             json.dump(template, f, indent=4)
@@ -50,14 +39,15 @@ def load_credentials():
             not login or
             not password or
             not url or
-            login == TEMPLATE["login"] or
-            password == TEMPLATE["password"] or
-            url == TEMPLATE["url"]
+            login == template["login"] or
+            password == template["password"] or
+            url == template["url"]
         ):
             print("❌ credentials.json non configuré correctement")
             print("👉 Remplis les champs login / password / url")
             sys.exit(1)
-        elif set(data.keys()) != required_keys:
+
+        if set(data.keys()) != required_keys:
             print("❌ credentials.json mal formé")
             sys.exit(1)
 
