@@ -2,8 +2,8 @@ from playwright.sync_api import sync_playwright
 import time
 
 # 🔐 CONFIG
-LOGIN = "TON_LOGIN"
-PASSWORD = "TON_PASSWORD"
+LOGIN = "f.simonin128"
+PASSWORD = "FloFs131102&"
 URL = "https://0383301g.index-education.net/pronote/mobile.parent.html"
 
 DEBUG = True
