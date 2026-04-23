@@ -3,10 +3,59 @@ from playwright.sync_api import sync_playwright
 import json
 import csv
 import time
+import json
+import sys
+import os
 
-LOGIN = "f.simonin128"
-PASSWORD = "FloFs131102&"
-URL = "https://0383301g.index-education.net/pronote/mobile.parent.html"
+def load_credentials():
+    filename = "credentials.json"
+
+    # 🆕 créer le fichier s'il n'existe pas
+    if not os.path.exists(filename):
+        print("⚠️ credentials.json introuvable → création d'un fichier modèle")
+
+        template = {
+            "login": "your_login_here",
+            "password": "your_password_here",
+            "url": "https://your_pronote_url_here"
+        }
+
+        with open(filename, "w") as f:
+            json.dump(template, f, indent=4)
+
+        print("✅ Fichier credentials.json créé")
+        print("👉 Remplis-le puis relance le script")
+
+        sys.exit(1)
+
+    # 🔐 lecture du fichier
+    try:
+        with open(filename, "r") as f:
+            data = json.load(f)
+
+        login = data.get("login", "").strip()
+        password = data.get("password", "").strip()
+        url = data.get("url", "").strip()
+
+        # ❌ détecter si utilisateur n'a pas rempli
+        if (
+            not login or
+            not password or
+            not url or
+            "your_" in login or
+            "your_" in password
+        ):
+            print("❌ credentials.json non configuré correctement")
+            print("👉 Remplis les champs login / password / url")
+            sys.exit(1)
+
+        return login, password, url
+
+    except json.JSONDecodeError:
+        print("❌ credentials.json invalide (JSON corrompu)")
+        sys.exit(1)
+
+LOGIN, PASSWORD, URL = load_credentials()
 
 MYDEBUG = True
 
