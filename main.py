@@ -336,7 +336,6 @@ def go_to_notes(context, page, timeout=30):
     start = time.time()
 
     page.on("response", extract_notes)
-    page.on("response", log_all_responses)
     page.on("response", capture)
 
     clicked = False
