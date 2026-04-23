@@ -1,6 +1,5 @@
 from pip._internal.utils import retry
 from playwright.sync_api import sync_playwright
-import json
 import csv
 import time
 import json
@@ -9,16 +8,16 @@ import os
 
 def load_credentials():
     filename = "credentials.json"
+    template = {
+        "login": "your_login_here",
+        "password": "your_password_here",
+        "url": "https://your_pronote_url_here"
+    }
+    required_keys = {"login", "password", "url"}
 
     # 🆕 créer le fichier s'il n'existe pas
     if not os.path.exists(filename):
         print("⚠️ credentials.json introuvable → création d'un fichier modèle")
-
-        template = {
-            "login": "your_login_here",
-            "password": "your_password_here",
-            "url": "https://your_pronote_url_here"
-        }
 
         with open(filename, "w") as f:
             json.dump(template, f, indent=4)
@@ -42,11 +41,16 @@ def load_credentials():
             not login or
             not password or
             not url or
-            "your_" in login or
-            "your_" in password
+            login == template["login"] or
+            password == template["password"] or
+            url == template["url"]
         ):
             print("❌ credentials.json non configuré correctement")
             print("👉 Remplis les champs login / password / url")
+            sys.exit(1)
+
+        if set(data.keys()) != required_keys:
+            print("❌ credentials.json mal formé")
             sys.exit(1)
 
         return login, password, url
@@ -55,6 +59,16 @@ def load_credentials():
         print("❌ credentials.json invalide (JSON corrompu)")
         sys.exit(1)
 
+# JSON FILE PARAMETERS
+# for use script you need to create a credentials.json file in your racine script (where your main.py is located)
+# {
+#   "login": "your_login_here",
+#   "password": "your_password_here",
+#   "url": "your_url_login_here" example : "https://0383301g.index-education.net/pronote/mobile.parent.html"
+# }
+
+
+# 🔐 LOAD CONFIG/SETTINGS SCRIPT
 LOGIN, PASSWORD, URL = load_credentials()
 
 MYDEBUG = True
