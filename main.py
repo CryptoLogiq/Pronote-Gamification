@@ -9,9 +9,12 @@ def load_credentials():
     template = {
         "login": "your_login_here",
         "password": "your_password_here",
+        "jj": "00",
+        "mm": "00",
+        "aa": "0000",
         "url": "https://your_pronote_url_here"
     }
-    required_keys = {"login", "password", "url"}
+    required_keys = {"login", "password", "url", "jj", "mm", "aa"}
 
     # 🆕 créer le fichier s'il n'existe pas
     if not os.path.exists(filename):
@@ -30,18 +33,29 @@ def load_credentials():
         with open(filename, "r") as f:
             data = json.load(f)
 
-        login = data.get("login", "").strip()
-        password = data.get("password", "").strip()
-        url = data.get("url", "").strip()
+            login = data.get("login", "").strip()
+            password = data.get("password", "").strip()
+            jj = data.get("jj", "").strip()
+            mm = data.get("mm", "").strip()
+            aa = data.get("aa", "").strip()
+            url = data.get("url", "").strip()
 
         # ❌ détecter si utilisateur n'a pas rempli
         if (
             not login or
             not password or
+            not jj or
+            not mm or
+            not aa or
             not url or
             login == template["login"] or
             password == template["password"] or
+            jj == template["jj"] or
+            mm == template["mm"] or
+            aa == template["aa"] or
+            password == template["password"] or
             url == template["url"]
+
         ):
             print("❌ credentials.json non configuré correctement")
             print("👉 Remplis les champs login / password / url")
@@ -51,7 +65,9 @@ def load_credentials():
             print("❌ credentials.json mal formé")
             sys.exit(1)
 
-        return login, password, url
+
+        credentials = {"login":login, "password":password, "jj":jj, "mm":mm, "aa":aa, "url":url}
+        return credentials
 
     except json.JSONDecodeError:
         print("❌ credentials.json invalide (JSON corrompu)")
@@ -67,7 +83,7 @@ def load_credentials():
 
 
 # 🔐 LOAD CONFIG/SETTINGS SCRIPT
-LOGIN, PASSWORD, URL = load_credentials()
+Creds = load_credentials()
 DEBUG = True
 
 
@@ -83,10 +99,10 @@ STATE_PRONOTE = "PRONOTE"
 def detect_state(page):
     url = page.url.lower()
 
-    if "pronote" in url:
+    if "pronote" in url and not "cas" in url :
         return STATE_PRONOTE
 
-    if page.locator('label[for="idp-EDU"]').count() > 0:
+    if "cas" in url  and page.locator('label[for="idp-EDU"]').count() > 0:
         return STATE_WAYF
 
     if page.locator('input[name="username"]').count() > 0:
@@ -123,11 +139,52 @@ def handle_profile(page):
     except:
         print("⚠️ bouton profil non prêt, retry...")
 
+def fill_identity_and_validate(page, creds):
+    day = page.locator('input[name="jour"]')
+    month = page.locator('input[name="mois"]')
+    year = page.locator('input[name="annee"]')
+
+    # Jour
+    day.click()
+    day.press("Control+A")
+    day.press("Backspace")
+    page.keyboard.type(creds["jj"], delay=80)
+    page.keyboard.press("Tab")
+
+    # Mois
+    month.click()
+    month.press("Control+A")
+    month.press("Backspace")
+    page.keyboard.type(creds["mm"], delay=80)
+    page.keyboard.press("Tab")
+
+    # Année
+    year.click()
+    year.press("Control+A")
+    year.press("Backspace")
+    page.keyboard.type(creds["aa"], delay=80)
+    page.keyboard.press("Tab")
+
+    page.wait_for_timeout(400)
+
+    btn = page.locator('button:has-text("Confirmer")')
+
+    try:
+        btn.wait_for(state="visible", timeout=5000)
+        btn.hover()
+        page.wait_for_timeout(150)
+        btn.click(timeout=3000)
+    except Exception:
+        # fallback : petit clic ailleurs pour déclencher blur/change
+        page.mouse.move(50, 50)
+        page.mouse.click(50, 50)
+        page.wait_for_timeout(200)
+        btn.click(force=True)
 
 # 🔁 MACHINE À ÉTATS
-def run_auth_flow(page, login, password, timeout=60):
+def run_auth_flow(page, creds, timeout=60):
     start = time.time()
-    last_state = None
+    step = 0
 
     while True:
         if time.time() - start > timeout:
@@ -136,50 +193,122 @@ def run_auth_flow(page, login, password, timeout=60):
 
         page.wait_for_timeout(500)
 
-        state = detect_state(page)
+        print(f"🔎 STEP {step} | URL → {page.url}")
 
-        # DEBUG propre
-        if state != last_state:
-            print(f"🔎 STATE → {state} | URL → {page.url}")
-            last_state = state
+        # 0️⃣ WAYF
+        if step == 0:
+            if page.locator('#idp-EDU').count() > 0:
+                print("➡️ WAYF eleves ou Parent [case a cocher]")
 
-        if state == STATE_WAYF:
-            handle_wayf(page)
+                page.locator('label[for="idp-EDU"]').click()
+                page.locator('#button-submit').click()
+
+                step += 1
+                continue
+
+        # 1️⃣ PROFILE
+        elif step == 1:
+            btn = page.locator('#bouton_responsable')
+
+            if btn.count() > 0:
+                print("➡️ PROFILE [Parent Responsable]")
+
+                try:
+                    btn.click(timeout=2000)
+                except:
+                    page.evaluate("document.querySelector('#bouton_responsable').click()")
+
+                step += 1
+                continue
+
+        # 2️⃣ LOGIN
+        elif step == 2:
+            if page.locator('input[name="j_username"]').count() > 0:
+
+                print("➡️ LOGIN + MDP")
+
+                # champ identifiant
+                #< input class ="fr-input" type="text" id="username" name="j_username" placeholder="Identifiant au format p.nomXX" autocapitalize="off" required="" autocomplete="off" >
+                page.fill('input[name="j_username"]', creds["login"])
+                page.wait_for_timeout(150)
+
+                #champ password
+                #<input class="fr-input" type="password" id="password" name="j_password" required="" autocomplete="off">
+                page.fill('input[name="j_password"]', creds["password"])
+                page.wait_for_timeout(150)
+
+                btn = page.locator('#bouton_valider')
+
+                if btn.count() > 0:
+                    print("➡️ LOGIN submit")
+
+                    try:
+                        btn.wait_for(state="visible", timeout=5000)
+                        btn.scroll_into_view_if_needed()
+                        btn.click(timeout=3000)
+
+                    except:
+                        print("⚠️ click normal échoué → force")
+
+                        try:
+                            btn.click(force=True)
+                            page.keyboard.press("Enter")
+                        except:
+                            print("⚠️ force échoué → JS click")
+                            page.evaluate("document.querySelector('#bouton_valider').click()")
+
+                step += 1
+                continue
+
+        # 3️⃣ VERIFY (optionnel)
+        elif step == 3:
+            # champs date naissance
+            if page.locator('input[name="jour"]').count() > 0:
+                print("➡️ VERIF identité (date naissance d'un de vos enfant)")
+
+                fill_identity_and_validate(page, creds)
+
+                step += 1
+                continue
+            else:
+                # pas de vérif → skip
+                step += 1
+                continue
+
+        # 4️⃣ PRONOTE
+        elif step == 4:
+            if "pronote" in page.url.lower() or creds["url"] in page.url:
+                print("✅ PRONOTE OK")
+                return True
+
+            # fallback si stuck
+            print("⚠️ fallback accès PRONOTE direct")
+            page.goto(creds["url"])
+            step += 1
             continue
 
-        if state == STATE_LOGIN:
-            handle_login(page, login, password)
-            continue
-
-        if state == STATE_PROFILE:
-            handle_profile(page)
-            continue
-
-        if state == STATE_PRONOTE:
-            print("✅ PRONOTE atteint")
+        elif step == 5:
+            print(f"🔎 STEP {step} | URL → {page.url}")
+            print("✅ PRONOTE OK")
             return True
 
-        # état inconnu → on attend
-        # utile pendant les transitions SAML
-        pass
+        # on wait si pas de conditions valide (page/dom pas fini de chargé ou pas synchro)
+        page.wait_for_timeout(500)
 
 
 # 🚀 MAIN
 with sync_playwright() as p:
 
-    context = p.chromium.launch_persistent_context(
-        user_data_dir="./profile",
-        headless=not DEBUG,
-        args=["--start-maximized"]
-    )
+    browser = p.chromium.launch(headless=not DEBUG)
+    context = browser.new_context()
 
     # ⚠️ important avec persistent context
-    page = context.pages[0] if context.pages else context.new_page()
+    page = context.new_page()
 
     print("🌐 ouverture URL")
-    page.goto(URL)
+    page.goto(Creds["url"])
 
-    success = run_auth_flow(page, LOGIN, PASSWORD)
+    success = run_auth_flow(page, Creds)
 
     if not success:
         print("❌ login échoué")
