@@ -103,153 +103,162 @@ RESPONSE_HOOKS_ATTACHED = False
 # =========================
 # DEBUG
 # =========================
-def _debug_stamp():
-    return datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+
+DEBUG_PRINT = False
 
 def _debug_stamp():
     return datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 
 def export_debug_state(page, root, prefix="debug", student=None):
-    debug_dir = pathlib.Path("debug_exports")
-    debug_dir.mkdir(exist_ok=True)
+    if DEBUG_PRINT:
+        debug_dir = pathlib.Path("debug_exports")
+        debug_dir.mkdir(exist_ok=True)
 
-    stamp = _debug_stamp()
-    student_name = ""
-    if student:
-        student_name = f"_{student.get('name', '').replace(' ', '_')}"
+        stamp = _debug_stamp()
+        student_name = ""
+        if student:
+            student_name = f"_{student.get('name', '').replace(' ', '_')}"
 
-    base = debug_dir / f"{stamp}_{prefix}{student_name}"
+        base = debug_dir / f"{stamp}_{prefix}{student_name}"
 
-    meta = {
-        "page_url": "",
-        "root_url": "",
-        "student": student or {},
-        "current_student": get_current_student(),
-        "combo_count": 0,
-        "tree_count": 0,
-        "treeitem_count": 0,
-        "tout_voir_count": 0,
-        "combo_label": "",
-        "combo_expanded": "",
-    }
+        meta = {
+            "page_url": "",
+            "root_url": "",
+            "student": student or {},
+            "current_student": get_current_student(),
+            "combo_count": 0,
+            "tree_count": 0,
+            "treeitem_count": 0,
+            "tout_voir_count": 0,
+            "combo_label": "",
+            "combo_expanded": "",
+        }
 
-    try:
-        meta["page_url"] = page.url
-    except Exception:
-        pass
+        try:
+            meta["page_url"] = page.url
+        except Exception:
+            pass
 
-    try:
-        meta["root_url"] = getattr(root, "url", "")
-    except Exception:
-        pass
+        try:
+            meta["root_url"] = getattr(root, "url", "")
+        except Exception:
+            pass
 
-    try:
-        combo = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').first
-        if combo.count() > 0:
-            meta["combo_count"] = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').count()
-            try:
-                meta["combo_label"] = combo.locator('.bs-libelle').first.inner_text().strip()
-            except Exception:
-                pass
-            try:
-                meta["combo_expanded"] = combo.get_attribute("aria-expanded")
-            except Exception:
-                pass
-    except Exception:
-        pass
+        try:
+            combo = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').first
+            if combo.count() > 0:
+                meta["combo_count"] = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').count()
+                try:
+                    meta["combo_label"] = combo.locator('.bs-libelle').first.inner_text().strip()
+                except Exception:
+                    pass
+                try:
+                    meta["combo_expanded"] = combo.get_attribute("aria-expanded")
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
-    try:
-        meta["tree_count"] = root.locator('div[role="tree"][aria-label="Liste"]').count()
-    except Exception:
-        pass
+        try:
+            meta["tree_count"] = root.locator('div[role="tree"][aria-label="Liste"]').count()
+        except Exception:
+            pass
 
-    try:
-        meta["treeitem_count"] = root.locator('div[role="treeitem"]').count()
-    except Exception:
-        pass
+        try:
+            meta["treeitem_count"] = root.locator('div[role="treeitem"]').count()
+        except Exception:
+            pass
 
-    try:
-        meta["tout_voir_count"] = root.locator('#id_77id_44').count()
-    except Exception:
-        pass
+        try:
+            meta["tout_voir_count"] = root.locator('#id_77id_44').count()
+        except Exception:
+            pass
 
-    # meta json
-    with open(f"{base}_meta.json", "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2, ensure_ascii=False)
+        # meta json
+        with open(f"{base}_meta.json", "w", encoding="utf-8") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
 
-    # page html
-    try:
-        with open(f"{base}_page.html", "w", encoding="utf-8") as f:
-            f.write(page.content())
-    except Exception:
-        pass
+        # page html
+        try:
+            with open(f"{base}_page.html", "w", encoding="utf-8") as f:
+                f.write(page.content())
+        except Exception:
+            pass
 
-    # root html (important si root = frame)
-    try:
-        with open(f"{base}_root.html", "w", encoding="utf-8") as f:
-            f.write(root.content())
-    except Exception:
-        pass
+        # root html (important si root = frame)
+        try:
+            with open(f"{base}_root.html", "w", encoding="utf-8") as f:
+                f.write(root.content())
+        except Exception:
+            pass
 
-    # page screenshot
-    try:
-        page.screenshot(path=f"{base}_page.png", full_page=True)
-    except Exception:
-        pass
+        # page screenshot
+        try:
+            page.screenshot(path=f"{base}_page.png", full_page=True)
+        except Exception:
+            pass
 
-    # root body screenshot
-    try:
-        body = root.locator("body").first
-        if body.count() > 0:
-            body.screenshot(path=f"{base}_root.png")
-    except Exception:
-        pass
+        # root body screenshot
+        try:
+            body = root.locator("body").first
+            if body.count() > 0:
+                body.screenshot(path=f"{base}_root.png")
+        except Exception:
+            pass
 
-    # combo outerHTML
-    try:
-        combo = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').first
-        if combo.count() > 0:
-            with open(f"{base}_combo.html", "w", encoding="utf-8") as f:
-                f.write(combo.evaluate("el => el.outerHTML"))
-    except Exception:
-        pass
+        # combo outerHTML
+        try:
+            combo = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').first
+            if combo.count() > 0:
+                with open(f"{base}_combo.html", "w", encoding="utf-8") as f:
+                    f.write(combo.evaluate("el => el.outerHTML"))
+        except Exception:
+            pass
 
-    # tree outerHTML
-    try:
-        tree = root.locator('div[role="tree"][aria-label="Liste"]').first
-        if tree.count() > 0:
-            with open(f"{base}_tree.html", "w", encoding="utf-8") as f:
-                f.write(tree.evaluate("el => el.outerHTML"))
-    except Exception:
-        pass
+        # tree outerHTML
+        try:
+            tree = root.locator('div[role="tree"][aria-label="Liste"]').first
+            if tree.count() > 0:
+                with open(f"{base}_tree.html", "w", encoding="utf-8") as f:
+                    f.write(tree.evaluate("el => el.outerHTML"))
+        except Exception:
+            pass
 
-    print(f"🪲 Debug export créé : {base}")
+        print(f"🪲 Debug export créé : {base}")
 
 def dump_treeitems_debug(root):
-    try:
-        items = root.locator('div[role="treeitem"]')
-        count = items.count()
-        print(f"🪲 treeitem count = {count}")
+    if DEBUG_PRINT:
+        try:
+            items = root.locator('div[role="treeitem"]')
+            count = items.count()
+            print(f"🪲 treeitem count = {count}")
 
-        for i in range(count):
-            item = items.nth(i)
-            name = ""
-            klass = ""
-            try:
-                if item.locator('.titre-principal').count() > 0:
-                    name = item.locator('.titre-principal').first.inner_text().strip()
-            except Exception:
-                pass
-            try:
-                if item.locator('.infos-supp').count() > 0:
-                    klass = item.locator('.infos-supp').first.inner_text().strip()
-            except Exception:
-                pass
+            for i in range(count):
+                item = items.nth(i)
+                name = ""
+                klass = ""
+                try:
+                    if item.locator('.titre-principal').count() > 0:
+                        name = item.locator('.titre-principal').first.inner_text().strip()
+                except Exception:
+                    pass
+                try:
+                    if item.locator('.infos-supp').count() > 0:
+                        klass = item.locator('.infos-supp').first.inner_text().strip()
+                except Exception:
+                    pass
 
-            print(f"   [{i}] {name} ({klass})")
-    except Exception as e:
-        print("🪲 dump_treeitems_debug error:", e)
+                print(f"   [{i}] {name} ({klass})")
+        except Exception as e:
+            print("🪲 dump_treeitems_debug error:", e)
 
+
+# =========================
+# Wait system
+# =========================
+
+def ui_pause(page, ms=1200):
+    page.wait_for_timeout(ms)
 
 # =========================
 # STUDENT CONTEXT
@@ -632,6 +641,55 @@ def selector_dialog_is_open(root):
     except Exception:
         return False
 
+def ensure_home_page(page, root_url, timeout=15):
+    deadline = time.time() + timeout
+
+    while time.time() < deadline:
+        try:
+            title = page.title()
+        except Exception:
+            title = ""
+
+        try:
+            root = find_pronote_root(page)
+            combo = root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').first
+            if combo.count() > 0 and combo.is_visible():
+                if "Page d'accueil" in title or "Espace Parents" in title:
+                    return True
+        except Exception:
+            pass
+
+        # tente un bouton retour PRONOTE
+        back_selectors = [
+            'button[aria-label="Retour"]',
+            'button[title="Retour"]',
+            'button:has-text("Retour")',
+            '.icon-retour',
+            '.bt-retour',
+            '.btn-retour',
+        ]
+
+        for sel in back_selectors:
+            try:
+                btn = page.locator(sel).first
+                if btn.count() > 0 and btn.is_visible():
+                    btn.click(timeout=1500)
+                    page.wait_for_timeout(1200)
+                    break
+            except Exception:
+                pass
+        else:
+            # fallback bourrin mais fiable : recharge la page d'accueil
+            try:
+                page.goto(Creds["url"], wait_until="domcontentloaded", timeout=10000)
+                page.wait_for_timeout(2000)
+            except Exception:
+                pass
+
+        page.wait_for_timeout(500)
+
+    return False
+
 
 def open_selector_if_needed(root, page):
     if selector_dialog_is_open(root):
@@ -764,79 +822,116 @@ def select_student_by_index(page, student):
 
 def click_tout_voir_for_current_student(page, timeout=20):
     start = time.time()
-    selector = '#id_77id_44[aria-label="Tout voir"]'
 
     while time.time() - start <= timeout:
         root = find_pronote_root(page)
 
         try:
-            btn = root.locator(selector).first
+            # 1) on ancre sur le widget "Dernières notes", pas sur l'id
+            widget = root.locator(
+                'article.widget.notes:has(span:has-text("Dernières notes"))'
+            ).first
 
-            if btn.count() > 0:
-                btn.wait_for(state="visible", timeout=3000)
+            if widget.count() == 0:
+                widget = root.locator(
+                    'article:has(span:has-text("Dernières notes"))'
+                ).first
+
+            if widget.count() == 0:
+                page.wait_for_timeout(500)
+                continue
+
+            widget.wait_for(state="visible", timeout=3000)
+
+            student = get_current_student()
+            before = count_dernieres_notes_for_student(student)
+
+            clicked = False
+
+            # 2) bouton "Tout voir" dans ce widget
+            targets = [
+                widget.locator('button[aria-label="Tout voir"]').first,
+                widget.locator('button:has-text("Tout voir")').first,
+                widget.locator('header h2.clickable').first,
+                widget.locator('span:has-text("Dernières notes")').first,
+                widget.locator('.card-container').first,
+            ]
+
+            for target in targets:
+                try:
+                    if target.count() == 0:
+                        continue
+                except Exception:
+                    continue
 
                 try:
-                    print("BTN HTML:", btn.evaluate("el => el.outerHTML"))
+                    target.scroll_into_view_if_needed()
                 except Exception:
                     pass
 
-                export_debug_state(page, root, prefix="before_tout_voir", student=get_current_student())
-
                 try:
-                    btn.scroll_into_view_if_needed()
+                    target.click(timeout=2500)
+                    clicked = True
+                    break
                 except Exception:
                     pass
 
-                page.wait_for_timeout(300)
-
-                student = get_current_student()
-                before = count_dernieres_notes_for_student(student)
+                try:
+                    target.click(force=True, timeout=2500)
+                    clicked = True
+                    break
+                except Exception:
+                    pass
 
                 try:
-                    btn.click(timeout=3000)
+                    target.focus()
+                    page.keyboard.press("Enter")
+                    page.wait_for_timeout(250)
+                    page.keyboard.press("Space")
+                    clicked = True
+                    break
                 except Exception:
-                    try:
-                        btn.click(force=True, timeout=3000)
-                    except Exception:
-                        try:
-                            btn.focus()
-                            page.keyboard.press("Enter")
-                            page.wait_for_timeout(300)
-                            page.keyboard.press("Space")
-                        except Exception:
-                            root.evaluate("""
-                                () => {
-                                    const el = document.querySelector('#id_77id_44[aria-label="Tout voir"]');
-                                    if (el) {
-                                        el.dispatchEvent(new MouseEvent('mousedown', {bubbles:true}));
-                                        el.dispatchEvent(new MouseEvent('mouseup', {bubbles:true}));
-                                        el.dispatchEvent(new MouseEvent('click', {bubbles:true}));
-                                    }
-                                }
-                            """)
+                    pass
 
-                export_debug_state(page, root, prefix="after_tout_voir_click", student=get_current_student())
+                try:
+                    target.dispatch_event("click")
+                    clicked = True
+                    break
+                except Exception:
+                    pass
 
-                for _ in range(24):
-                    now = count_dernieres_notes_for_student(student)
-                    if now > before:
-                        print(f"✅ bouton 'Tout voir' validé pour {student['name']}")
-                        return True
-                    page.wait_for_timeout(500)
+            if not clicked:
+                page.wait_for_timeout(500)
+                continue
 
-                export_debug_state(page, root, prefix="tout_voir_no_notes", student=get_current_student())
-                print(f"⚠️ clic effectué mais aucune requête notes pour {student['name']}")
-                return False
+            # 3) validation réelle : attendre la requête DernieresNotes
+            for _ in range(24):
+                now = count_dernieres_notes_for_student(student)
+                if now > before:
+                    print(f"✅ bouton 'Tout voir' validé pour {student['name']}")
+                    return True
+                page.wait_for_timeout(500)
+
+            print(f"⚠️ clic sur le bloc notes effectué mais aucune requête notes pour {student['name']}")
+            return False
 
         except Exception:
             pass
 
         page.wait_for_timeout(500)
 
-    root = find_pronote_root(page)
-    export_debug_state(page, root, prefix="tout_voir_not_found", student=get_current_student())
-    print(f"❌ bouton #id_77id_44 introuvable pour {get_current_student()['name']}")
+    print(f"❌ Bloc 'Dernières notes' introuvable pour {get_current_student()['name']}")
     return False
+
+def debug_notes_widget(page):
+    root = find_pronote_root(page)
+    try:
+        widget = root.locator('article:has(span:has-text("Dernières notes"))').first
+        print("notes widget count:", widget.count())
+        if widget.count() > 0:
+            print(widget.evaluate("el => el.outerHTML"))
+    except Exception as e:
+        print("debug_notes_widget error:", e)
 
 # =========================
 # JSON EXPORTS
@@ -1028,10 +1123,10 @@ def export_resume_csv(raw_responses_list, filename="resume.csv"):
 # =========================
 # MULTI-STUDENTS NOTES FLOW
 # =========================
-def go_to_notes_all_students(context, page, timeout_per_student=20):
+def go_to_notes_all_students(page, timeout_per_student=20):
     attach_response_hooks(page)
     raw_responses.clear()
-
+    root_url = page.url
     root = find_pronote_root(page)
     print("ROOT URL:", getattr(root, "url", "page"))
     print("combo count:", root.locator('.ie-btnselecteur[aria-label="Sélectionnez un élève"][role="combobox"]').count())
@@ -1050,6 +1145,11 @@ def go_to_notes_all_students(context, page, timeout_per_student=20):
     for student in students:
         print(f"\n➡️ Traitement de {student['name']} ({student['class']})")
 
+        # Toujours repartir de la page d'accueil avant une sélection
+        if not ensure_home_page(page, root_url, timeout=15):
+            print("❌ Impossible de revenir à la page d'accueil")
+            return False
+
         ok = select_student_by_index(page, student)
         if not ok:
             print(f"❌ Impossible de sélectionner {student['name']}")
@@ -1065,6 +1165,11 @@ def go_to_notes_all_students(context, page, timeout_per_student=20):
         ok = wait_for_dernieres_notes(student, previous_count=previous_count, timeout=12)
         if not ok:
             print(f"❌ Aucune réponse DernieresNotes reçue pour {student['name']}")
+            return False
+
+        # Très important : revenir à l'accueil avant le prochain élève
+        if not ensure_home_page(page, root_url, timeout=15):
+            print(f"❌ Impossible de revenir à l'accueil après les notes de {student['name']}")
             return False
 
     page.wait_for_timeout(1500)
@@ -1102,7 +1207,7 @@ with sync_playwright() as p:
 
     print("🎯 PRONOTE prêt !")
 
-    notes_success = go_to_notes_all_students(context, page)
+    notes_success = go_to_notes_all_students(page)
 
     if not notes_success:
         print("❌ échec accès notes")

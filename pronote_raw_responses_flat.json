@@ -1,10 +1,14 @@
 [
   {
-    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3517976/a47a5ba2eae56f42735d170d6615d610",
+    "student": {
+      "name": "",
+      "class": ""
+    },
+    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3194017/bcab26adbd7e370ee26ded0078f3fb05",
     "data": {
       "id": "Navigation",
-      "session": 3517976,
-      "no": "8DDD3BED801D4E90069AEB7963D6DF36",
+      "session": 3194017,
+      "no": "C63B1B7521A93DDB3C310EC0B8B2DF57",
       "dataSec": {
         "data": {},
         "nom": "Navigation"
@@ -12,971 +16,3320 @@
     }
   },
   {
-    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3517976/4738ba15915fc1cf8d1bae02f15793a4",
+    "student": {
+      "name": "",
+      "class": ""
+    },
+    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3194017/293cf443a1a4f58d4e1cbc6db122cba4",
     "data": {
-      "id": "DernieresNotes",
-      "session": 3517976,
-      "no": "F9E248496535C23D6F054984E0D4A21F",
+      "id": "PageAccueil",
+      "session": 3194017,
+      "no": "68FDBE4E360F56079013659C961B0546",
       "dataSec": {
         "data": {
-          "moyGenerale": {
-            "_T": 10,
-            "V": "9,38"
-          },
-          "moyGeneraleClasse": {
-            "_T": 10,
-            "V": "13,98"
-          },
-          "baremeMoyGenerale": {
-            "_T": 10,
-            "V": "20"
-          },
-          "baremeMoyGeneraleParDefaut": {
-            "_T": 10,
-            "V": "20"
-          },
-          "avecDetailDevoir": true,
-          "avecDetailService": true,
-          "listeServices": {
-            "_T": 24,
-            "V": [
-              {
-                "L": "MATHEMATIQUES > MATHEMATIQUES",
-                "N": "131#JXv6vCyNgzFezaQBz7Ty9nnGNJazYViow2w3rEGt23U",
-                "G": 12,
-                "ordre": 14,
-                "estServiceEnGroupe": false,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "13,16"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "13,09"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "2,88"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "19,86"
-                },
-                "couleur": "#F51C0A"
-              },
-              {
-                "L": "TECHNOLOGIE",
-                "N": "131#N588cAp1wFuIeW9BkjwYlvWS4vuGpmxjmQjDTR1S6RM",
-                "G": 12,
-                "ordre": 3,
-                "estServiceEnGroupe": false,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "14"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "17,54"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "14"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "couleur": "#FFED00"
-              },
-              {
-                "L": "ANGLAIS LV1",
-                "N": "131#kzOSuFAA5KfWEO_XjrUv733KrKRU-_r1XMlunGYechE",
-                "G": 12,
-                "ordre": 4294967295,
-                "estServiceEnGroupe": false,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "12,17"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "14,81"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "8,33"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "couleur": "#F906ED"
-              },
-              {
-                "L": "ARTS PLASTIQUES",
-                "N": "131#iS71E1dvXZgEPWes6Xy6qOm8wxiTHJDUooeyRuLw5II",
-                "G": 12,
-                "ordre": 4,
-                "estServiceEnGroupe": false,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "10"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "13,8"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "8"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "couleur": "#F6F0B5"
-              },
-              {
-                "L": "ESPAGNOL LV2",
-                "N": "131#y4CVUR89sR9vA2T-EeU216A5FwYjtjoTi-EGzy9Flk8",
-                "G": 12,
-                "ordre": 12,
-                "estServiceEnGroupe": true,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "8"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "17,79"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "8"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "couleur": "#41768B"
-              },
-              {
-                "L": "SCIENCES VIE & TERRE",
-                "N": "131#lpHcdzw2xCkOBtpG2x8giwX_d9EZ9Q-YaBSO24gPkVk",
-                "G": 12,
-                "ordre": 8,
-                "estServiceEnGroupe": true,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "4"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "8,72"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "0"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "17,5"
-                },
-                "couleur": "#5C782A"
-              },
-              {
-                "L": "HISTOIRE-GEOGRAPHIE",
-                "N": "131#4PPoaW4IszlFqCg5eiTH9ApdN51LTctsQMZtcLeE87w",
-                "G": 12,
-                "ordre": 1,
-                "estServiceEnGroupe": false,
-                "moyEleve": {
-                  "_T": 10,
-                  "V": "4,5"
-                },
-                "baremeMoyEleve": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeMoyEleveParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "moyClasse": {
-                  "_T": 10,
-                  "V": "11,52"
-                },
-                "moyMin": {
-                  "_T": 10,
-                  "V": "4,5"
-                },
-                "moyMax": {
-                  "_T": 10,
-                  "V": "18"
-                },
-                "couleur": "#45F50A"
-              }
-            ]
-          },
-          "listeDevoirs": {
-            "_T": 24,
-            "V": [
-              {
-                "N": "33#XnwEML2Q8UFgTpXKXf5ccHSKevSNMP20mMmf82wbU8g",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "14"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "03/04/2026"
-                },
-                "commentaireSurNote": "A corriger au Kiosque avec un.e camarade qui t'entraîne.",
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "MATHEMATIQUES > MATHEMATIQUES",
-                    "N": "131#JXv6vCyNgzFezaQBz7Ty9nnGNJazYViow2w3rEGt23U",
-                    "G": 12,
-                    "couleur": "#F51C0A"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "13,76"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "19"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "4"
-                },
-                "commentaire": "Automatismes18",
-                "coefficient": 0.2,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false,
-                "libelleSujet": "Automatisme et travail mental Test n°18 5ème.pdf",
-                "elmSujet": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°18 5ème.pdf",
-                    "N": "33#XnwEML2Q8UFgTpXKXf5ccHSKevSNMP20mMmf82wbU8g",
-                    "G": 59,
-                    "genreDocument": 1
-                  }
-                },
-                "libelleCorrige": "Automatisme et travail mental Test n°18 5ème CORRECTION.pdf",
-                "elmCorrige": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°18 5ème CORRECTION.pdf",
-                    "N": "33#XnwEML2Q8UFgTpXKXf5ccHSKevSNMP20mMmf82wbU8g",
-                    "G": 59,
-                    "genreDocument": 1
-                  }
-                }
-              },
-              {
-                "N": "33#JWiDWofzoM8MynK9UT08xnEpmyIBPExzeq5c6x8FoYo",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "14"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "12/03/2026"
-                },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "TECHNOLOGIE",
-                    "N": "131#N588cAp1wFuIeW9BkjwYlvWS4vuGpmxjmQjDTR1S6RM",
-                    "G": 12,
-                    "couleur": "#FFED00"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": [
-                    {
-                      "L": "diapo energie ",
-                      "N": "187#ZErihwH698caiLBdWS4_8cKbCkE6C2Kf49Bwbbd2J9E"
+          "vieScolaire": {
+            "L": "Observations, Absences, Absences à l'internat, Retards, Passages à l'infirmerie, Sanctions, Exclusions de cours, Autres punitions, Mesures conservatoires",
+            "listeAbsences": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Travail non fait",
+                  "N": "96#g292yIMxfAWhLS6VfcZ6ZPxCMzwxYK1iC60KeilbpMc",
+                  "G": 46,
+                  "rubrique": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Travail non fait",
+                      "N": "95#4DEzZDIZMjuQmF3tP1JivliDNeAiaVk8fE_QkJDgwt0",
+                      "G": 3
                     }
-                  ]
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "17,54"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "14"
-                },
-                "commentaire": "",
-                "coefficient": 1.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
-              },
-              {
-                "N": "33#DXiJXqAsTqTzuQb0YxF78miO7cVTczoZZ1EihmYto7Q",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "11"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "18"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "13/03/2026"
-                },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "MATHEMATIQUES > MATHEMATIQUES",
-                    "N": "131#JXv6vCyNgzFezaQBz7Ty9nnGNJazYViow2w3rEGt23U",
-                    "G": 12,
-                    "couleur": "#F51C0A"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "12,46"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "18"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "2"
-                },
-                "commentaire": "Automatismes17",
-                "coefficient": 0.2,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false,
-                "libelleSujet": "Automatisme et travail mental Test n°17 5ème.pdf",
-                "elmSujet": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°17 5ème.pdf",
-                    "N": "33#DXiJXqAsTqTzuQb0YxF78miO7cVTczoZZ1EihmYto7Q",
-                    "G": 59,
-                    "genreDocument": 1
-                  }
-                },
-                "libelleCorrige": "Automatisme et travail mental Test n°17 5ème CORRECTION.pdf",
-                "elmCorrige": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°17 5ème CORRECTION.pdf",
-                    "N": "33#DXiJXqAsTqTzuQb0YxF78miO7cVTczoZZ1EihmYto7Q",
-                    "G": 59,
-                    "genreDocument": 1
+                  },
+                  "genreObservation": 3,
+                  "date": {
+                    "_T": 7,
+                    "V": "20/04/2026 15:37:00"
+                  },
+                  "demandeur": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Mme PARRA P.",
+                      "N": "109#aa6uIUhngL_W5PZg-h_4xn8kkgstl5GFiqADKDo_XPs",
+                      "G": 3,
+                      "estProfPrincipal": false,
+                      "mail": "pauline.parra1@ac-grenoble.fr"
+                    }
+                  },
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ESPAGNOL LV2",
+                      "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI"
+                    }
+                  },
+                  "commentaire": "",
+                  "estLue": false,
+                  "avecARObservation": true,
+                  "page": {
+                    "Onglet": 19,
+                    "membre": {
+                      "_T": 24,
+                      "V": {
+                        "L": "SIMONIN Charly",
+                        "N": "46#MNbd5AvbrzNOQL51ZOg40sS4_-ZrM4v9buF2Dx5ekg8",
+                        "P": 617
+                      }
+                    },
+                    "Absence": 45,
+                    "message": ""
                   }
                 }
-              },
-              {
-                "N": "33#OV2ouQBzIQNuIBLW0xKYj46jK2Fe9ypwUn0O-zHXb_A",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "20"
+              ]
+            },
+            "commentaireAbsenceObligatoire": true,
+            "commentaireRetardObligatoire": true
+          },
+          "travailAFaire": {
+            "listeTAF": {
+              "_T": 24,
+              "V": [
+                {
+                  "N": "147#Zhq58qhqs9FX-anGDqzGgFT_cKa9ZqF-rOoE2CLqV0U",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "PHYSIQUE-CHIMIE",
+                      "N": "79#usArV82iMascM3QN8lFvQ6tVLB13X0lMcu0d4BQqVS4"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Evaluation fin de chapitre - les mélanges</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "31/03/2026"
+                  },
+                  "CouleurFond": "#B67549",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
+                {
+                  "N": "147#ZUYUmvK7zc02X2s7UP2yzgRYJuxyWmGRZKOvVQnyk0o",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "SCIENCES VIE & TERRE",
+                      "N": "79#1FnACAEx_zgMSlowZbcWVamhIkpFcmaZjceUa001pNY"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Apprendre la leçon, contrôle 6 respiration des animaux : bilans 3 et 4 + activités 6 et 7). Corriger et faire signer le contrôle 5.</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "31/03/2026"
+                  },
+                  "CouleurFond": "#5C782A",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Correction élèves DS5.pdf",
+                        "N": "37#5nv2KK6wAJOAc31OiiZSuX-9FRuaCVvqZjnG8hRFNWc",
+                        "G": 1
+                      }
+                    ]
+                  },
+                  "TAFFait": false
                 },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
+                {
+                  "N": "147#f90nYBaDClF69gjRtt8ECVvON3mhv3aqWMJDdKOoepY",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ANGLAIS LV1",
+                      "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Verbes Irréuguliers : 11 premiers</div>"
+                  },
+                  "ordre": 46139,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#F906ED",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 },
-                "date": {
-                  "_T": 7,
-                  "V": "13/03/2026"
+                {
+                  "N": "147#bttXjDMMQvAukfAV-rbtFJKJH4NlewRGZJXtD7VPhs4",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ESPAGNOL LV2",
+                      "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>terminer la fiche d'exercice sur le présent. S'aider d'internet pour trouver l'infinitif si besoin  = être acteur de son apprentissage.</div>"
+                  },
+                  "ordre": 46139,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#41768B",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "ANGLAIS LV1",
-                    "N": "131#kzOSuFAA5KfWEO_XjrUv733KrKRU-_r1XMlunGYechE",
-                    "G": 12,
-                    "couleur": "#F906ED"
-                  }
+                {
+                  "N": "147#ZTqk5lxXq7HWIaPku4ADGlcU4WAyDW50LO4nO83Kw00",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ESPAGNOL LV2",
+                      "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>test sur le présent de l'indicatif: connaitre les groupes, les terminaisons, les pronoms personnels sujet et savoir qu'un verbe se compose d'un radical et d'une terminaison &gt; voir leçon Fiche méthodologique que je remets en PJ</div>"
+                  },
+                  "ordre": 46139,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#41768B",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "5èmepresente indicativo fiche méthodologique et exercices.pdf",
+                        "N": "37#P9xEwdZklh4nkUsr8oJxAEm72LGEibYZ1u0NWzWSCGc",
+                        "G": 1
+                      }
+                    ]
+                  },
+                  "TAFFait": false
                 },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
+                {
+                  "N": "147#z_kdgYCues0-_b1BuJie7I2F0QTlB1ktIRoexxuZQx4",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "MATHEMATIQUES",
+                      "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div style=\"font-family: arial,helvetica,sans-serif; font-size: 11px;\">Réviser automatisme 18 + préparer 19</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "22/04/2026"
+                  },
+                  "CouleurFond": "#F51C0A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
+                {
+                  "N": "147#jZFcYkMyRtiAk1gu4PT8gAxgsuO1YV4AyGvQ7QlHiYM",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "FRANCAIS",
+                      "N": "79#_ZbBRCJTYU1CS1PoQix21myH4SJ7NvwEbSy7wx9_0CM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Exercices n°4,5 p 61 et 8 et 10 p 62-63</div>"
+                  },
+                  "ordre": 46142,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "30/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "23/04/2026"
+                  },
+                  "CouleurFond": "#2E1FE0",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "15,86"
+                {
+                  "N": "147#q4fU7mirrjzs-yxIPyYYP-d-Rr9etxXfR2Xy-Zk64UU",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "MATHEMATIQUES",
+                      "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div style=\"font-family: arial,helvetica,sans-serif; font-size: 11px;\">RMTJ</div>\n<div style=\"font-family: arial,helvetica,sans-serif; font-size: 11px;\">CHAP 20 : Mémoriser la propriété</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "23/04/2026"
+                  },
+                  "CouleurFond": "#F51C0A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "5S18_Cours_complet.pdf",
+                        "N": "37#q6EOQJChtcz2fE8Xu7OtNGyxMYQ4YmkwZ0S4PH6V8rA",
+                        "G": 1
+                      },
+                      {
+                        "L": "5S19_Cours_complet.pdf",
+                        "N": "37#b0SxON6ZB2j7Ed4PrTG0JxwwmZh3sDvpvJxa6_N_D2M",
+                        "G": 1
+                      },
+                      {
+                        "L": "5S20_Cours_complet.pdf",
+                        "N": "37#rk_8NWbZkklrsjAKilwm0HbpYwj-rpXhbhfWIz1X9Ck",
+                        "G": 1
+                      }
+                    ]
+                  },
+                  "TAFFait": false
                 },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "4"
-                },
-                "commentaire": "",
-                "coefficient": 0.5,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
-              },
-              {
-                "N": "33#BJLq42cmzdAMQOoZ9Vl1-ulKVpBsdb1T2eUUXVpUln0",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "17"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "13/03/2026"
-                },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "ANGLAIS LV1",
-                    "N": "131#kzOSuFAA5KfWEO_XjrUv733KrKRU-_r1XMlunGYechE",
-                    "G": 12,
-                    "couleur": "#F906ED"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "18,25"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "10"
-                },
-                "commentaire": "",
-                "coefficient": 0.5,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
-              },
-              {
-                "N": "33#4VNsXcZxAGcPRxDrS4Lw8WAH4t1e-H955xZSr_p1c8Q",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "10"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "16/03/2026"
-                },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "ARTS PLASTIQUES",
-                    "N": "131#iS71E1dvXZgEPWes6Xy6qOm8wxiTHJDUooeyRuLw5II",
-                    "G": 12,
-                    "couleur": "#F6F0B5"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "13,8"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "8"
-                },
-                "commentaire": "Sortir de la case",
-                "coefficient": 1.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
-              },
-              {
-                "N": "33#AzKRupS0HXsLUfMHQuZRZHfnrzi7CFckGOKCDn_Y5WU",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "|2"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
-                  "_T": 7,
-                  "V": "13/03/2026"
-                },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "MATHEMATIQUES > MATHEMATIQUES",
-                    "N": "131#JXv6vCyNgzFezaQBz7Ty9nnGNJazYViow2w3rEGt23U",
-                    "G": 12,
-                    "couleur": "#F51C0A"
-                  }
-                },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
-                  "_T": 24,
-                  "V": []
-                },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "commentaire": "Automatismes17",
-                "coefficient": 0.2,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false,
-                "libelleSujet": "Automatisme et travail mental Test n°17 5ème.pdf",
-                "elmSujet": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°17 5ème.pdf",
-                    "N": "33#AzKRupS0HXsLUfMHQuZRZHfnrzi7CFckGOKCDn_Y5WU",
-                    "G": 59,
-                    "genreDocument": 1
-                  }
-                },
-                "libelleCorrige": "Automatisme et travail mental Test n°17 5ème CORRECTION.pdf",
-                "elmCorrige": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Automatisme et travail mental Test n°17 5ème CORRECTION.pdf",
-                    "N": "33#AzKRupS0HXsLUfMHQuZRZHfnrzi7CFckGOKCDn_Y5WU",
-                    "G": 59,
-                    "genreDocument": 1
-                  }
+                {
+                  "N": "147#EXPGWQlgvJc_ladkTYOxCDcD_n6Mryi6xlBT_HByQfQ",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ANGLAIS LV1",
+                      "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Finir exercice lecture.</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "23/04/2026"
+                  },
+                  "CouleurFond": "#F906ED",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
                 }
-              },
+              ]
+            }
+          },
+          "agenda": {
+            "listeEvenements": [
               {
-                "N": "33#RP4mVN_GHln5CGlOEaZl231t7lE-vFjdI2fhXfDDAPI",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "2"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "5"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
+                "L": "Soirée Portes Ouvertes",
+                "N": "71#dqFG3_oL2PHJFHGMTdzE2BTKVcr-3MJplVXIw5rVvC0",
+                "G": 0,
+                "DateDebut": {
                   "_T": 7,
-                  "V": "30/03/2026"
+                  "V": "24/04/2026 17:00:00"
                 },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "ESPAGNOL LV2",
-                    "N": "131#y4CVUR89sR9vA2T-EeU216A5FwYjtjoTi-EGzy9Flk8",
-                    "G": 12,
-                    "couleur": "#41768B"
-                  }
+                "DateFin": {
+                  "_T": 7,
+                  "V": "24/04/2026 20:00:00"
                 },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#A6CAF0",
+                "listeFichiers": {
                   "_T": 24,
                   "V": []
                 },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "4,45"
-                },
-                "estEnGroupe": true,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "5"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "2"
-                },
-                "commentaire": "cartel superhéroe del plurilinguismo",
-                "coefficient": 1.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
               },
               {
-                "N": "33#Ay5fQw96qPNtFpddh3h3_E1yAsONWtjyUM5i6LyPzhI",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "4"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
+                "L": "Fête du travail",
+                "N": "74#HGgZ7uiWDnxHcP37Tdlv02gCvAMV6PLn05zKa4_ds5k",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
                   "_T": 7,
-                  "V": "17/03/2026"
+                  "V": "01/05/2026"
                 },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "SCIENCES VIE & TERRE",
-                    "N": "131#lpHcdzw2xCkOBtpG2x8giwX_d9EZ9Q-YaBSO24gPkVk",
-                    "G": 12,
-                    "couleur": "#5C782A"
-                  }
+                "DateFin": {
+                  "_T": 7,
+                  "V": "01/05/2026"
                 },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
                   "_T": 24,
                   "V": []
                 },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "8,72"
-                },
-                "estEnGroupe": true,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "17,5"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "0"
-                },
-                "commentaire": "DS5 Nutrition animale",
-                "coefficient": 1.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
+                "estPeriodique": false
               },
               {
-                "N": "33#IoMLYBbJXjOYdb7YeRdnms6aGP_kKYqQUxVqhTdXqRA",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "9"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
+                "L": "Victoire 1945",
+                "N": "74#LOuGTHvE2syPPI1crJFf8nIbz6NF3gPeRRWJ9ZyWR7w",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
                   "_T": 7,
-                  "V": "13/04/2026"
+                  "V": "08/05/2026"
                 },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "ANGLAIS LV1",
-                    "N": "131#kzOSuFAA5KfWEO_XjrUv733KrKRU-_r1XMlunGYechE",
-                    "G": 12,
-                    "couleur": "#F906ED"
-                  }
+                "DateFin": {
+                  "_T": 7,
+                  "V": "08/05/2026"
                 },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
                   "_T": 24,
                   "V": []
                 },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "13,72"
-                },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "7"
-                },
-                "commentaire": "",
-                "coefficient": 2.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
+                "estPeriodique": false
               },
               {
-                "N": "33#d9GOyoZkmqqaHvB4O5VW6DABNjQ13xH3FsMYi1RXZN8",
-                "G": 59,
-                "note": {
-                  "_T": 10,
-                  "V": "4,5"
-                },
-                "bareme": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "baremeParDefaut": {
-                  "_T": 10,
-                  "V": "20"
-                },
-                "date": {
+                "L": "Ascension",
+                "N": "74#qvW4miaFQjQTBvZj8R8hjAVxxpZsc2JXSerBrrb3Hzs",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
                   "_T": 7,
-                  "V": "21/04/2026"
+                  "V": "14/05/2026"
                 },
-                "service": {
-                  "_T": 24,
-                  "V": {
-                    "L": "HISTOIRE-GEOGRAPHIE",
-                    "N": "131#4PPoaW4IszlFqCg5eiTH9ApdN51LTctsQMZtcLeE87w",
-                    "G": 12,
-                    "couleur": "#45F50A"
-                  }
+                "DateFin": {
+                  "_T": 7,
+                  "V": "17/05/2026"
                 },
-                "periode": {
-                  "_T": 24,
-                  "V": {
-                    "L": "Trimestre 3",
-                    "N": "105#zBZm-EgdxQT4FKH_dCyhRncN9qSDe6PdJ_tMApPIDxc"
-                  }
-                },
-                "ListeThemes": {
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
                   "_T": 24,
                   "V": []
                 },
-                "moyenne": {
-                  "_T": 10,
-                  "V": "11,52"
+                "estPeriodique": false
+              },
+              {
+                "L": "Pentecôte",
+                "N": "74#4Y70QGgcP2OANnePhiOywUUav9gYzVjfm_926lTNeSA",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "24/05/2026"
                 },
-                "estEnGroupe": false,
-                "noteMax": {
-                  "_T": 10,
-                  "V": "18"
+                "DateFin": {
+                  "_T": 7,
+                  "V": "25/05/2026"
                 },
-                "noteMin": {
-                  "_T": 10,
-                  "V": "4,5"
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
                 },
-                "commentaire": "Bilan Contacts",
-                "coefficient": 1.0,
-                "estFacultatif": false,
-                "estBonus": false,
-                "estRamenerSur20": false
+                "estPeriodique": false
+              },
+              {
+                "L": "PREVENTION RESEAUX SOCIAUX 5EME",
+                "N": "71#c_x3WkLghncTfPeCFQhf46A_zj2dKdTSIRWdlBecdnc",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "01/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "01/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#A6CAF0",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              },
+              {
+                "L": "Diplôme National du Brevet",
+                "N": "71#ihO-nl_ROZ2oZI3Lq6NMDCyu0701YhVNWkajn3YCoDc",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "26/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "26/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#ED679B",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              },
+              {
+                "L": "Diplôme National du Brevet",
+                "N": "71#3eZMQbUR_VBd-kPII6R3Qt8E8JdI3It2pjR51TSW7Xs",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "29/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "30/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#ED679B",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
               }
             ]
+          },
+          "prochaineDate": {
+            "_T": 7,
+            "V": "27/04/2026"
+          },
+          "prochainJourCycle": 0,
+          "dateSelectionnee": {
+            "_T": 7,
+            "V": "24/04/2026"
+          },
+          "jourCycleSelectionne": 4,
+          "avecCoursAnnule": true,
+          "placeCourante": 89,
+          "prefsGrille": {
+            "genreRessource": 4
+          },
+          "ListeCours": [
+            {
+              "N": "29#3rH79z-2PdISTupf8YXZq0iu5zSajRyAdg4vG-U_vKg",
+              "G": 0,
+              "P": 607,
+              "place": 94,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 14:29:00"
+              },
+              "CouleurFond": "#F51C0A",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "MATHEMATIQUES",
+                    "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "MARGAIN E."
+                  },
+                  {
+                    "L": "B3",
+                    "N": "129#15BeHPSpVAqKjsJctQosfZ5_k4BELeIBH6GnbNA0Ekw",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#2PDCb5iDGef2nFCwbiogyCvnmFpH2aI0imxOWYrnkJk",
+              "G": 0,
+              "P": 410,
+              "place": 83,
+              "duree": 3,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 09:20:00"
+              },
+              "CouleurFond": "#2E1FE0",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "FRANCAIS",
+                    "N": "79#_ZbBRCJTYU1CS1PoQix21myH4SJ7NvwEbSy7wx9_0CM",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "WALLEZ E."
+                  },
+                  {
+                    "L": "C12",
+                    "N": "129#Wnta16qXdsh32JQej-oIW_k4VoM2cC5y5EMMf3mwV_A",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false,
+              "cahierDeTextes": {
+                "_T": 24,
+                "V": {
+                  "N": "18#jvhOJ4XtJ5RYNi0yXAfZLmyzqkYq8OaA8Fy2LshoO5E",
+                  "originesCategorie": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              },
+              "AvecCdT": true
+            },
+            {
+              "N": "29#61EBhazEd8RkVlV9lkQDAOpUm2VyC5HSzr79T3hK9sU",
+              "G": 2,
+              "P": 2695,
+              "Statut": "Permanence",
+              "estPermanence": true,
+              "place": 82,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 08:53:00"
+              },
+              "utilisableCDT": false,
+              "CouleurFond": "#C0C0C0",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "Permanence",
+                    "N": "79#H4eNZgUJhB9aR3mgK87CpwDLeo1VJySH13UJ4Iz52Xs",
+                    "G": 16
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#3oXMHj1a25sVmFrc6rU0RtHRukDCmWHKfot2cZCG_mk",
+              "G": 0,
+              "P": 409,
+              "place": 6,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 10:54:00"
+              },
+              "CouleurFond": "#2E1FE0",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "FRANCAIS",
+                    "N": "79#_ZbBRCJTYU1CS1PoQix21myH4SJ7NvwEbSy7wx9_0CM",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "WALLEZ E."
+                  },
+                  {
+                    "L": "C11",
+                    "N": "129#S1a-BqpWQ2Qh11KjtRdnl4MDaX3byGhcSJ7lC9NXfjo",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#xmputvkTMJpQccaBEh0Vd5SKqnPgjuSoMYHtxts4cMA",
+              "G": 2,
+              "P": 3006,
+              "Statut": "Permanence",
+              "estPermanence": true,
+              "place": 80,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 08:00:00"
+              },
+              "utilisableCDT": false,
+              "CouleurFond": "#C0C0C0",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "Permanence",
+                    "N": "79#H4eNZgUJhB9aR3mgK87CpwDLeo1VJySH13UJ4Iz52Xs",
+                    "G": 16
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#QkxMyFqSUzLAEmqkpbE2RxmC6SXZLHzW5fGMQKK_Mqg",
+              "G": 0,
+              "P": 122,
+              "place": 92,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 13:22:00"
+              },
+              "CouleurFond": "#45F50A",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "HISTOIRE-GEOGRAPHIE",
+                    "N": "79#jECPhVLP-cRwCpEiVzSw9Kzayn9FQvS4Nu8aAwseHYY",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "KADRI A."
+                  },
+                  {
+                    "L": "B7",
+                    "N": "129#gMjmfsuQOyhjU5mpI9A5dUaDw1Tse794zvbyjrFP_-8",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#4Om9pYWqeouLqIYa3xd3ArRJwjFzMmUUWgfVK73I1D0",
+              "G": 0,
+              "P": 87,
+              "place": 12,
+              "duree": 4,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 13:22:00"
+              },
+              "CouleurFond": "#11DDEE",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ED.PHYSIQUE & SPORT.",
+                    "N": "79#ur3sg0W4mLHPeYTdYUIduw1ztho_ekfPlOWCskQLn80",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "GARNIER C."
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#eJE7qgk6CpWBHVc9TUWWNgXnNjuMuQTBlH3QtXlEtgg",
+              "G": 0,
+              "P": 128,
+              "place": 86,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 10:54:00"
+              },
+              "CouleurFond": "#F906ED",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ANGLAIS LV1",
+                    "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "PUPPATO C."
+                  },
+                  {
+                    "L": "B10",
+                    "N": "129#IQIzxa44kE6120WU7fvLrr_9_JLluodUsTsk1MuDg2s",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#Z5K1Tcy0y44LXF2IgDJu9PIEs5PmwTiBJ9Lmq0PgEnk",
+              "G": 0,
+              "P": 127,
+              "place": 2,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 08:53:00"
+              },
+              "CouleurFond": "#F906ED",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ANGLAIS LV1",
+                    "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "PUPPATO C."
+                  },
+                  {
+                    "L": "B12",
+                    "N": "129#6RjB-zBzdhB7lDOwFwtDi5zPTFRmHu-tzMEGbwuPOVk",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#AuQPY6LMxvej5S49XR3thgluocCcC6hR-pXrsbQVi9Q",
+              "G": 0,
+              "P": 516,
+              "place": 16,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 15:37:00"
+              },
+              "CouleurFond": "#41768B",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ESPAGNOL LV2",
+                    "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "PARRA P."
+                  },
+                  {
+                    "L": "[5D-ESP]",
+                    "N": "60#gAVrwuUFvymof07qhliZrO3RZeia7jR9xWpKd3ydxjA",
+                    "G": 2
+                  },
+                  {
+                    "L": "B10",
+                    "N": "129#IQIzxa44kE6120WU7fvLrr_9_JLluodUsTsk1MuDg2s",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            }
+          ],
+          "premierePlaceHebdoDuJour": 80,
+          "debutDemiPensionHebdo": 88,
+          "finDemiPensionHebdo": 92,
+          "absences": {
+            "joursCycle": {
+              "_T": 24,
+              "V": [
+                {
+                  "jourCycle": 0,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 1,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 2,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 3,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 4,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève est prévu au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 0,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 1,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 2,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 3,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 4,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève est prévu au repas de midi"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "recreations": {
+            "_T": 24,
+            "V": [
+              {
+                "L": "Récréation du matin",
+                "place": 4
+              },
+              {
+                "L": "Récréation de l'après-midi",
+                "place": 16
+              }
+            ]
+          },
+          "elections": {
+            "listeElections": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "notes": {
+            "avecDetailDevoir": true,
+            "avecDetailService": true,
+            "listeDevoirs": {
+              "_T": 24,
+              "V": [
+                {
+                  "N": "33#NAX7mgE7HPrgcD5eBJTLKkgVVygmeTdeGkP9FtaAmco",
+                  "G": 59,
+                  "note": {
+                    "_T": 10,
+                    "V": "9"
+                  },
+                  "bareme": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "baremeParDefaut": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "13/04/2026"
+                  },
+                  "service": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ANGLAIS LV1",
+                      "N": "131#iP6tT5LMhrlXuj7SUGt8PzANph-HmBhuBgcEzCwPAQo",
+                      "G": 12,
+                      "couleur": "#F906ED"
+                    }
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "N": "33#6Azyind-RPm3G-eaoIocY1v-yHbXKQXLp1CPIqQM2nU",
+                  "G": 59,
+                  "note": {
+                    "_T": 10,
+                    "V": "4,5"
+                  },
+                  "bareme": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "baremeParDefaut": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "21/04/2026"
+                  },
+                  "service": {
+                    "_T": 24,
+                    "V": {
+                      "L": "HISTOIRE-GEOGRAPHIE",
+                      "N": "131#NSQqx_9tEt6A_PpW7XBANadmcWSbEtFDTCsndF8GUIs",
+                      "G": 12,
+                      "couleur": "#45F50A"
+                    }
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              ]
+            },
+            "page": {
+              "periode": {
+                "_T": 24,
+                "V": {
+                  "L": "Trimestre 3",
+                  "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                }
+              }
+            }
+          },
+          "competences": {
+            "listeEvaluations": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Oral - Parcours Avenir",
+                  "N": "52#qks_0DPdg0cnEADNRqwYDAhfHTJbDr6ZXEZ_FURYQZk",
+                  "G": 29,
+                  "listeNiveauxDAcquisitions": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Maîtrise fragile",
+                        "N": "93#wuX0Co4syv5OcRrsC7Jy2sX6u4OzvikaeazoEt-yYiY",
+                        "G": 4,
+                        "abbreviation": "C",
+                        "ordre": 1,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "PARCOURS AVENIR",
+                            "N": "86#pROxv4OsrdCHlTglBgSCcJvrCRoGRpktt_WNdM3rQdE",
+                            "G": 1,
+                            "strPrefixes": "D1.1"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Ecrire",
+                            "N": "44#0I6nmhIsjl_OQ7abvKTUY-NNHF50wG23Ijw3CcmS_GY"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Exprimer sa pensée de manière argumentée et nuancée",
+                            "N": "25#kAiHw2ZRw8U-gLODdC7tMoqIITVmvqa3dFqSE2AyDas"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "listePaliers": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Cycle 4",
+                        "N": "100#7xp9Q53akoSe42sVt6ThbyDzgSLVWs6U9OYRGukInB4"
+                      }
+                    ]
+                  },
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "PARCOURS AVENIR",
+                      "N": "79#gnKieS32i5mgicCh0_t2RfHbOrFyDzOJudxl42UYjww",
+                      "G": 16,
+                      "couleur": "#C0C0C0",
+                      "ordre": 0,
+                      "serviceConcerne": {
+                        "_T": 24,
+                        "V": {
+                          "N": "131#0OqUB_WzHVkG8r5XsivyX4gY-_SEtFsy_rkRFW_gJbU",
+                          "G": 12
+                        }
+                      }
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "individu": {
+                    "_T": 24,
+                    "V": {
+                      "L": "M. LIPPI-REY F.",
+                      "N": "109#C0CywiEOqg9jT45htQ5C8KsTZs2gqXjQZSJYbnMaLC8"
+                    }
+                  },
+                  "coefficient": 1,
+                  "descriptif": "",
+                  "date": {
+                    "_T": 7,
+                    "V": "03/04/2026"
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  }
+                }
+              ]
+            },
+            "page": {
+              "periode": {
+                "_T": 24,
+                "V": {
+                  "L": "Trimestre 3",
+                  "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                }
+              }
+            }
+          },
+          "devoirSurveille": {
+            "listeDS": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "enseignementADistance": {
+            "jours": {
+              "_T": 24,
+              "V": [
+                {
+                  "G": 1,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 2,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 3,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 4,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "30/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 5,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "04/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 6,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "05/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 7,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "06/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              ]
+            },
+            "actif": false
+          },
+          "kiosque": {
+            "listeRessources": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "lienUtile": {
+            "titre": "Liens et numéros utiles",
+            "listeLiens": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "WEB RADIO",
+                  "commentaire": "",
+                  "url": "https://tube-arts-lettres-sciences-humaines.apps.education.fr/c/scoolradio/videos"
+                },
+                {
+                  "L": "ENT DU COLLEGE F. DARD",
+                  "commentaire": "",
+                  "url": "https://saintchef-isere.ent.auvergnerhonealpes.fr/"
+                },
+                {
+                  "L": "ESIDOC",
+                  "commentaire": "",
+                  "url": "https://0383301g.esidoc.fr/"
+                }
+              ]
+            }
+          },
+          "partenaireCDI": {
+            "listeCDI": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Portail du CDI",
+                  "N": "20#BOZYLYliR_1Fvro_fN_7Twjs-F37M19ojIcx2W3EUYI",
+                  "url": "https://0383301g.esidoc.fr/home/",
+                  "avecDelegationAuth": true,
+                  "avecActualisation": false
+                }
+              ]
+            }
+          },
+          "voteElecMembreBureau": {
+            "listeOperationsEP": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "voteElecElecteur": {
+            "listeOperationsEP": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "documentsASigner": {
+            "nombreDocumentsDocumentsSignatures": 0
           }
         },
-        "nom": "DernieresNotes"
+        "nom": "PageAccueil"
+      }
+    }
+  },
+  {
+    "student": {
+      "name": "",
+      "class": ""
+    },
+    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3194017/5fd488b814ebe989427f02b64486423f",
+    "data": {
+      "id": "Navigation",
+      "session": 3194017,
+      "no": "004EEFEFCBA9BD2FAC3E19C0F22115B7",
+      "dataSec": {
+        "data": {},
+        "nom": "Navigation"
+      }
+    }
+  },
+  {
+    "student": {
+      "name": "",
+      "class": ""
+    },
+    "url": "https://0383301g.index-education.net/pronote/appelfonction/7/3194017/30ae2bd08367fbb4211379d5ec959462",
+    "data": {
+      "id": "PageAccueil",
+      "session": 3194017,
+      "no": "6B2A22051F9F150A358B211D3E20EAE1",
+      "dataSec": {
+        "data": {
+          "vieScolaire": {
+            "L": "Observations, Absences, Absences à l'internat, Retards, Passages à l'infirmerie, Sanctions, Exclusions de cours, Autres punitions, Mesures conservatoires",
+            "listeAbsences": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Oubli de matériel",
+                  "N": "96#83Lwf-Q5orkCMAk3TsAVXS5Sxa3rcVVqtX9xtCRuWrg",
+                  "G": 46,
+                  "rubrique": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Oubli de matériel",
+                      "N": "95#Ekw6BCihiGyN7Y6pbnx-M0ls0iIVBQNQY6iN0FRulXU",
+                      "G": 3
+                    }
+                  },
+                  "genreObservation": 3,
+                  "date": {
+                    "_T": 7,
+                    "V": "21/04/2026 13:22:00"
+                  },
+                  "demandeur": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Mme BRAZON N.",
+                      "N": "109#kXpEwizjKyI0lOxHCUAelX9oDCIaQ36k_ikWxH2pvAs",
+                      "G": 3
+                    }
+                  },
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "HISTOIRE-GEOGRAPHIE",
+                      "N": "79#jECPhVLP-cRwCpEiVzSw9Kzayn9FQvS4Nu8aAwseHYY"
+                    }
+                  },
+                  "commentaire": "",
+                  "estLue": false,
+                  "avecARObservation": true,
+                  "page": {
+                    "Onglet": 19,
+                    "membre": {
+                      "_T": 24,
+                      "V": {
+                        "L": "SIMONIN Nelson",
+                        "N": "46#S0ksrh0WD16FQk48V69g_j-lwWED1of3VVNkCJ6dgpg",
+                        "P": 618
+                      }
+                    },
+                    "Absence": 45,
+                    "message": ""
+                  }
+                }
+              ]
+            },
+            "commentaireAbsenceObligatoire": true,
+            "commentaireRetardObligatoire": true
+          },
+          "travailAFaire": {
+            "listeTAF": {
+              "_T": 24,
+              "V": [
+                {
+                  "N": "147#Fe44k2rZTDCwS85oYgB-p9MtxvYOMauOi83WJySezJM",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "MATHEMATIQUES",
+                      "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div style=\"font-family: arial,helvetica,sans-serif; font-size: 11px;\">\n<p class=\"western\"><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\">Automatismes et Travail mental Fiche 19<br></span></span><a href=\"https://docs.google.com/forms/d/e/1FAIpQLScKnIRPExe6e64RnD-RIeVFU6Luj2JhQewJ5ZPM-p3EcNQ3bQ/viewform\"><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\">Fiche 1</span></span></u></span><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\"><span lang=\"fr-FR\">9</span></span></span></u></span><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\"> Série 1</span></span></u></span></a><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\"><br><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSfptooP9pS_8op3Eocp0MFBpt5NfphQonbJFsTvTCtJ85qmcA/viewform\">Fiche 1</a></span></span></u></span><a href=\"https://docs.google.com/forms/d/e/1FAIpQLSfptooP9pS_8op3Eocp0MFBpt5NfphQonbJFsTvTCtJ85qmcA/viewform\"><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\"><span lang=\"fr-FR\">9</span></span></span></u></span><span style=\"color: #0000ff;\"><u><span style=\"font-family: Arial, serif;\"><span style=\"font-size: small;\"> Série 2</span></span></u></span></a></p>\n</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "03/04/2026"
+                  },
+                  "CouleurFond": "#F51C0A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": true
+                },
+                {
+                  "N": "147#uAIm48PaGrBFhCmtEDMyehm7_qiusn-uv-lDMb4bhBM",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "SCIENCES VIE & TERRE",
+                      "N": "79#1FnACAEx_zgMSlowZbcWVamhIkpFcmaZjceUa001pNY"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Bien savoir refaire la Question 1.</div>"
+                  },
+                  "ordre": 46139,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#5C782A",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#7qTXgBEPaJUxG7rTcynXUhr3_e-T3Q5nftHH4uf_MaA",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ESPAGNOL LV2",
+                      "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Bien revoir l&#039;ensemble de la séquence</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#41768B",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Familias hispanas",
+                        "N": "37#mb7PhnedcWhSu6rGxc8JT8_SNhnQeYzCHfeJGbDFtxo",
+                        "G": 0,
+                        "url": "https://digipad.app/p/687026/93cd674076473"
+                      }
+                    ]
+                  },
+                  "TAFFait": true
+                },
+                {
+                  "N": "147#u3FvdYuwoGmLXjIisW0gRes_UyAoy53VYGHm-PQq300",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "PHYSIQUE-CHIMIE",
+                      "N": "79#usArV82iMascM3QN8lFvQ6tVLB13X0lMcu0d4BQqVS4"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Apprendre le bilan 1 et les schémas des deux types de circuits. Finir la fiche d'exercices du chapitre 4.</div>"
+                  },
+                  "ordre": 46139,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "20/04/2026"
+                  },
+                  "CouleurFond": "#B67549",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "5ème CH5 fiche exercices .pdf",
+                        "N": "37#rGLJMhnL0-IYjZisxJbT9oNG-4tu2eyviOP5eew0tHk",
+                        "G": 1
+                      }
+                    ]
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#1-_yil3VD7_JCNW3pkD5VA2ygrinFVFAHPVh0CgzJSs",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "HISTOIRE-GEOGRAPHIE",
+                      "N": "79#jECPhVLP-cRwCpEiVzSw9Kzayn9FQvS4Nu8aAwseHYY"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Evaluation géographie</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "21/04/2026"
+                  },
+                  "CouleurFond": "#45F50A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#Kq0MXUc7NA4FqV1K-nX3LdoMGL71m05DuLhOsqhgNOk",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ANGLAIS LV1",
+                      "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Automatisme</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "22/04/2026"
+                  },
+                  "CouleurFond": "#F906ED",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Heroes 2",
+                        "N": "37#iRwt1bMPm7VDEcc9CXNzj8Y3CsNSK2ae8G7UCTfFmxI",
+                        "G": 0,
+                        "url": "https://docs.google.com/forms/d/e/1FAIpQLScDUusxuU07iKOeTJ68zMKgnaomYtUo0-OB6UkHlv4xW7AY4g/viewform?usp=publish-editor"
+                      }
+                    ]
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#N72nU3woJa4OVFxHNMdc2fqZprCwqIITsj5kZkk56wA",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ANGLAIS LV1",
+                      "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>exercice 3</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "22/04/2026"
+                  },
+                  "CouleurFond": "#F906ED",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": true
+                },
+                {
+                  "N": "147#o30pbrxTZ4vfouFXWKaU7RLsOjQ3EObVsTVMyIBlqsE",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "FRANCAIS",
+                      "N": "79#_ZbBRCJTYU1CS1PoQix21myH4SJ7NvwEbSy7wx9_0CM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Faire la fiche vocabulaire sur la chevalerie</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "22/04/2026"
+                  },
+                  "CouleurFond": "#2E1FE0",
+                  "couleurTexte": "#FFFFFF",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#yMkG-Elk3PL9Tfy8SJzHF4FlJD6ebccOVUeDypLkThw",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "HISTOIRE-GEOGRAPHIE",
+                      "N": "79#jECPhVLP-cRwCpEiVzSw9Kzayn9FQvS4Nu8aAwseHYY"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div>Cahier - TD - livre-</div>"
+                  },
+                  "ordre": 46140,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "22/04/2026"
+                  },
+                  "CouleurFond": "#45F50A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": false
+                },
+                {
+                  "N": "147#GsgKNfOFRM66Trz76-fUqP7OgAIccJQH2RMrcVwjwLQ",
+                  "G": 0,
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "MATHEMATIQUES",
+                      "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM"
+                    }
+                  },
+                  "descriptif": {
+                    "_T": 21,
+                    "V": "<div style=\"font-family: arial,helvetica,sans-serif; font-size: 11px;\">Réviser la correction des Automatismes 18</div>"
+                  },
+                  "ordre": 46136,
+                  "pourLe": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "donneLe": {
+                    "_T": 7,
+                    "V": "23/04/2026"
+                  },
+                  "CouleurFond": "#F51C0A",
+                  "couleurTexte": "#000000",
+                  "niveauDifficulte": 0,
+                  "duree": 0.0,
+                  "listeDocumentJoint": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "TAFFait": true
+                }
+              ]
+            }
+          },
+          "agenda": {
+            "listeEvenements": [
+              {
+                "L": "Soirée Portes Ouvertes",
+                "N": "71#dqFG3_oL2PHJFHGMTdzE2BTKVcr-3MJplVXIw5rVvC0",
+                "G": 0,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "24/04/2026 17:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "24/04/2026 20:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#A6CAF0",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              },
+              {
+                "L": "Fête du travail",
+                "N": "74#HGgZ7uiWDnxHcP37Tdlv02gCvAMV6PLn05zKa4_ds5k",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "01/05/2026"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "01/05/2026"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false
+              },
+              {
+                "L": "Victoire 1945",
+                "N": "74#LOuGTHvE2syPPI1crJFf8nIbz6NF3gPeRRWJ9ZyWR7w",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "08/05/2026"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "08/05/2026"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false
+              },
+              {
+                "L": "Ascension",
+                "N": "74#qvW4miaFQjQTBvZj8R8hjAVxxpZsc2JXSerBrrb3Hzs",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "14/05/2026"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "17/05/2026"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false
+              },
+              {
+                "L": "Pentecôte",
+                "N": "74#4Y70QGgcP2OANnePhiOywUUav9gYzVjfm_926lTNeSA",
+                "G": 16,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "24/05/2026"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "25/05/2026"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#FFCCD6",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false
+              },
+              {
+                "L": "PREVENTION RESEAUX SOCIAUX 5EME",
+                "N": "71#c_x3WkLghncTfPeCFQhf46A_zj2dKdTSIRWdlBecdnc",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "01/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "01/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#A6CAF0",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              },
+              {
+                "L": "Diplôme National du Brevet",
+                "N": "71#ihO-nl_ROZ2oZI3Lq6NMDCyu0701YhVNWkajn3YCoDc",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "26/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "26/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#ED679B",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              },
+              {
+                "L": "Diplôme National du Brevet",
+                "N": "71#3eZMQbUR_VBd-kPII6R3Qt8E8JdI3It2pjR51TSW7Xs",
+                "G": 0,
+                "sansHoraire": true,
+                "DateDebut": {
+                  "_T": 7,
+                  "V": "29/06/2026 09:00:00"
+                },
+                "DateFin": {
+                  "_T": 7,
+                  "V": "30/06/2026 17:00:00"
+                },
+                "Commentaire": "",
+                "estConseilClasse": false,
+                "CouleurCellule": "#ED679B",
+                "listeFichiers": {
+                  "_T": 24,
+                  "V": []
+                },
+                "estPeriodique": false,
+                "listeEleves": [
+                  "Nelson",
+                  "Charly"
+                ]
+              }
+            ]
+          },
+          "prochaineDate": {
+            "_T": 7,
+            "V": "27/04/2026"
+          },
+          "prochainJourCycle": 0,
+          "dateSelectionnee": {
+            "_T": 7,
+            "V": "24/04/2026"
+          },
+          "jourCycleSelectionne": 4,
+          "avecCoursAnnule": true,
+          "placeCourante": 89,
+          "prefsGrille": {
+            "genreRessource": 4
+          },
+          "ListeCours": [
+            {
+              "N": "29#ibrYBSrMlNkL-Aty3VaJ5OIUDbyHmER1O5my-21EvGY",
+              "G": 0,
+              "P": 497,
+              "place": 3,
+              "duree": 3,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 09:20:00"
+              },
+              "CouleurFond": "#5C782A",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "SCIENCES VIE & TERRE",
+                    "N": "79#1FnACAEx_zgMSlowZbcWVamhIkpFcmaZjceUa001pNY",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "MONOT V."
+                  },
+                  {
+                    "L": "[5GC]",
+                    "N": "60#Id5KmMwS6k6qM7EmfuEUzaqEu1augy2bmXpt6I9ktpg",
+                    "G": 2
+                  },
+                  {
+                    "L": "D12",
+                    "N": "129#xfCkn_vgJA5baCv_gH4SdSJMt3HSYJlgN8MrsdVhcDs",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#HgwYjUKghT9CDJSAYO86B4T2o6yh2FtfnDbOMQRllVY",
+              "G": 0,
+              "P": 339,
+              "place": 92,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 13:22:00"
+              },
+              "CouleurFond": "#41768B",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ESPAGNOL LV2",
+                    "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "MARTINHO RODRIGUES C."
+                  },
+                  {
+                    "L": "B15",
+                    "N": "129#QHI26jgF8g1jT74INaDIXNXunuM0zR0YSzSAVolDHVA",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#vO8lyrh3xU59jRwyPjBgxOAGIlIBAUS19P-8rOb66Y8",
+              "G": 0,
+              "P": 80,
+              "place": 86,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 10:54:00"
+              },
+              "CouleurFond": "#F51C0A",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "MATHEMATIQUES",
+                    "N": "79#7PpmDusvuSAIRc7PcNi9jisLksG0wEUCRUDHqV2mXOM",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "MARGAIN E."
+                  },
+                  {
+                    "L": "B3",
+                    "N": "129#15BeHPSpVAqKjsJctQosfZ5_k4BELeIBH6GnbNA0Ekw",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#34gJTFb1QUPrAGWr8kJAIVtzE4xbLkuM5zeT8ZF2uFo",
+              "G": 0,
+              "P": 473,
+              "place": 80,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 08:00:00"
+              },
+              "CouleurFond": "#2E1FE0",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "FRANCAIS",
+                    "N": "79#_ZbBRCJTYU1CS1PoQix21myH4SJ7NvwEbSy7wx9_0CM",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "RIGOT M."
+                  },
+                  {
+                    "L": "[5CP2]",
+                    "N": "60#TzAbtjU69BppkNFr-lNgEs8SKNvr9Jhgs2QxmoWMDw0",
+                    "G": 2
+                  },
+                  {
+                    "L": "C10",
+                    "N": "129#oYVGiFIkAluAomAJdVTPLON2vAmkl1RO0UNR79KzyW0",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false,
+              "cahierDeTextes": {
+                "_T": 24,
+                "V": {
+                  "N": "18#2U3IC-ipHOWM-LxXmUJLorCczSnOXGzEEe8zBVs1_Cw",
+                  "originesCategorie": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              },
+              "AvecCdT": true
+            },
+            {
+              "N": "29#DAkQ183J_q64wx-RPy57XD_CzZdwgLPMvWC72R-hLdk",
+              "G": 2,
+              "P": 2069,
+              "place": 0,
+              "duree": 3,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 08:00:00"
+              },
+              "CouleurFond": "#B67549",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "PHYSIQUE-CHIMIE",
+                    "N": "79#usArV82iMascM3QN8lFvQ6tVLB13X0lMcu0d4BQqVS4",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "PETIT C."
+                  },
+                  {
+                    "L": "[5GC]",
+                    "N": "60#Id5KmMwS6k6qM7EmfuEUzaqEu1augy2bmXpt6I9ktpg",
+                    "G": 2
+                  },
+                  {
+                    "L": "D11",
+                    "N": "129#FanoLz4TFTaf6OG_hcRQG71bDKHCfij5xSyrljK7vvA",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#F2nCcVuIfGmxz1oTjPwY6GjXnQslyOAxPh1Vy-TuMyI",
+              "G": 0,
+              "P": 115,
+              "place": 84,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 10:01:00"
+              },
+              "CouleurFond": "#5B215F",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "EDUCATION MUSICALE",
+                    "N": "79#oAlE-Inermh4tRw9mLCHPQDjcpCxD_5aix3O6nJtQ1U",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "GILLIER N."
+                  },
+                  {
+                    "L": "C1",
+                    "N": "129#sfWlbcKhj8W9jM2VC1Z9gw-F14IEGC-7sXDVvT8SzPY",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#Jo1fWABqeAooRiYoeES4NjWsKR1oCVggZJL6AbGWjxI",
+              "G": 0,
+              "P": 1556,
+              "place": 82,
+              "duree": 2,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "24/04/2026 08:53:00"
+              },
+              "CouleurFond": "#F906ED",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ANGLAIS LV1",
+                    "N": "79#QlVNi3k2w_IGfsqnLY1IEMTkb3e_-5oFAulLW0a60HE",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "BANCILHON S."
+                  },
+                  {
+                    "L": "B12",
+                    "N": "129#6RjB-zBzdhB7lDOwFwtDi5zPTFRmHu-tzMEGbwuPOVk",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#7cW4EV6TZRql5hM9ZrTo1kCHOTdxXWgxd3jzPAIgUQ8",
+              "G": 0,
+              "P": 340,
+              "place": 12,
+              "duree": 3,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 13:22:00"
+              },
+              "CouleurFond": "#41768B",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "ESPAGNOL LV2",
+                    "N": "79#s3qfS9eTE1aZ9pX0GXIgBc2yPaDBgIzoip3HVEDZRZI",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "MARTINHO RODRIGUES C."
+                  },
+                  {
+                    "L": "B15",
+                    "N": "129#QHI26jgF8g1jT74INaDIXNXunuM0zR0YSzSAVolDHVA",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            },
+            {
+              "N": "29#69vxEvJpCy-wYELMC3Nvp5eShR6ViHVR0RTdrZbzQyA",
+              "G": 0,
+              "P": 502,
+              "Statut": "Cours annulé",
+              "estAnnule": true,
+              "place": 0,
+              "duree": 3,
+              "DateDuCours": {
+                "_T": 7,
+                "V": "27/04/2026 08:00:00"
+              },
+              "CouleurFond": "#B67549",
+              "ListeContenus": {
+                "_T": 24,
+                "V": [
+                  {
+                    "L": "PHYSIQUE-CHIMIE",
+                    "N": "79#usArV82iMascM3QN8lFvQ6tVLB13X0lMcu0d4BQqVS4",
+                    "G": 16
+                  },
+                  {
+                    "G": 3,
+                    "L": "PETIT C."
+                  },
+                  {
+                    "L": "[5GC]",
+                    "N": "60#Id5KmMwS6k6qM7EmfuEUzaqEu1augy2bmXpt6I9ktpg",
+                    "G": 2
+                  },
+                  {
+                    "L": "D11",
+                    "N": "129#FanoLz4TFTaf6OG_hcRQG71bDKHCfij5xSyrljK7vvA",
+                    "G": 17
+                  }
+                ]
+              },
+              "AvecTafPublie": false
+            }
+          ],
+          "premierePlaceHebdoDuJour": 80,
+          "debutDemiPensionHebdo": 88,
+          "finDemiPensionHebdo": 92,
+          "absences": {
+            "joursCycle": {
+              "_T": 24,
+              "V": [
+                {
+                  "jourCycle": 0,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 1,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 2,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 3,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 4,
+                  "numeroSemaine": 34,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève est prévu au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 0,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 1,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 2,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 3,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève était présent au repas de midi"
+                    }
+                  }
+                },
+                {
+                  "jourCycle": 4,
+                  "numeroSemaine": 35,
+                  "DP": {
+                    "midi": {
+                      "icone": {
+                        "text": "",
+                        "check": true
+                      },
+                      "hint": "L'élève est prévu au repas de midi"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "recreations": {
+            "_T": 24,
+            "V": [
+              {
+                "L": "Récréation du matin",
+                "place": 4
+              },
+              {
+                "L": "Récréation de l'après-midi",
+                "place": 16
+              }
+            ]
+          },
+          "elections": {
+            "listeElections": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "notes": {
+            "avecDetailDevoir": true,
+            "avecDetailService": true,
+            "listeDevoirs": {
+              "_T": 24,
+              "V": [
+                {
+                  "N": "33#jd6x03EIO1UQDM7L5W2liHNmhWiFe5btr_Q9izhgDdk",
+                  "G": 59,
+                  "note": {
+                    "_T": 10,
+                    "V": "2"
+                  },
+                  "bareme": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "baremeParDefaut": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "30/03/2026"
+                  },
+                  "service": {
+                    "_T": 24,
+                    "V": {
+                      "L": "SCIENCES VIE & TERRE",
+                      "N": "131#cFRc7D3UcLpZGJKiWorwVzzXoG-A1zHGs5l6yLITHo0",
+                      "G": 12,
+                      "couleur": "#5C782A"
+                    }
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "N": "33#U5frq4z4URPm-q77ipN2YGwBNF9mV8iHHZtH_52fBTQ",
+                  "G": 59,
+                  "note": {
+                    "_T": 10,
+                    "V": "3,5"
+                  },
+                  "bareme": {
+                    "_T": 10,
+                    "V": "10"
+                  },
+                  "baremeParDefaut": {
+                    "_T": 10,
+                    "V": "20"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "17/04/2026"
+                  },
+                  "service": {
+                    "_T": 24,
+                    "V": {
+                      "L": "FRANCAIS",
+                      "N": "131#nxjvbxWHZgdO42szY-lQihj1mRLxMUuU_qnNnBpjSro",
+                      "G": 12,
+                      "couleur": "#2E1FE0"
+                    }
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              ]
+            },
+            "page": {
+              "periode": {
+                "_T": 24,
+                "V": {
+                  "L": "Trimestre 3",
+                  "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                }
+              }
+            }
+          },
+          "competences": {
+            "listeEvaluations": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Évaluation associée au devoir du 30/03/26 (SCIENCES VIE & TERRE)",
+                  "N": "52#M0SmQq-fbHRawGtHbFAntX_sRRUG4FAik8UcrgI5oCY",
+                  "G": 29,
+                  "listeNiveauxDAcquisitions": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Maîtrise insuffisante",
+                        "N": "93#H-Rwnqu3aGMzwi_-Yq36HRU1E0w01GSVlzgKvdT6TLo",
+                        "G": 6,
+                        "abbreviation": "E",
+                        "ordre": 2,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "SCIENCES DE LA VIE ET DE LA TERRE",
+                            "N": "86#zLVYnlobO7sAkhZ1PfKv3T7WpkRrJ0vkPU0Uvcdu57o",
+                            "G": 1,
+                            "strPrefixes": "D4"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Les systèmes naturels et techniques",
+                            "N": "44#Hvh1nfAMSHjn4GB8Gnqk5H6kuwDmP9_-Nb31TgBkv2U"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Restituer des connaissances",
+                            "N": "25#toH502fnuHpQZAixTF4gjWLo-RB6P0AZMnGj_sY8V1Q"
+                          }
+                        }
+                      },
+                      {
+                        "L": "Maîtrise insuffisante",
+                        "N": "93#H-Rwnqu3aGMzwi_-Yq36HRU1E0w01GSVlzgKvdT6TLo",
+                        "G": 6,
+                        "abbreviation": "E",
+                        "ordre": 1,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "SCIENCES DE LA VIE ET DE LA TERRE",
+                            "N": "86#zLVYnlobO7sAkhZ1PfKv3T7WpkRrJ0vkPU0Uvcdu57o",
+                            "G": 1,
+                            "strPrefixes": "D2"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "S’approprier des outils et des méthodes",
+                            "N": "44#hwnGuUHQIT-Ydzh4A9nT8Ljc_bTGtlH7_yfCU03qNTA"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Analyser et prélever des informations dans un document",
+                            "N": "25#a84cPIeV282Cm2qBK0IklfskO3WDI6lPywZ-Q2zCFH8"
+                          }
+                        }
+                      },
+                      {
+                        "L": "Maîtrise insuffisante",
+                        "N": "93#H-Rwnqu3aGMzwi_-Yq36HRU1E0w01GSVlzgKvdT6TLo",
+                        "G": 6,
+                        "abbreviation": "E",
+                        "ordre": 3,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "SCIENCES DE LA VIE ET DE LA TERRE",
+                            "N": "86#zLVYnlobO7sAkhZ1PfKv3T7WpkRrJ0vkPU0Uvcdu57o",
+                            "G": 1,
+                            "strPrefixes": "D4"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Les systèmes naturels et techniques",
+                            "N": "44#Hvh1nfAMSHjn4GB8Gnqk5H6kuwDmP9_-Nb31TgBkv2U"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Appliquer des connaissances",
+                            "N": "25#8OwZ38RwRYQhX6x7htvboKeI6uSDxz_dC2mzo-4IjnU"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "listePaliers": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Cycle 4",
+                        "N": "100#7xp9Q53akoSe42sVt6ThbyDzgSLVWs6U9OYRGukInB4"
+                      }
+                    ]
+                  },
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "SCIENCES VIE & TERRE",
+                      "N": "79#1FnACAEx_zgMSlowZbcWVamhIkpFcmaZjceUa001pNY",
+                      "G": 16,
+                      "couleur": "#5C782A",
+                      "ordre": 9,
+                      "serviceConcerne": {
+                        "_T": 24,
+                        "V": {
+                          "N": "131#cFRc7D3UcLpZGJKiWorwVzzXoG-A1zHGs5l6yLITHo0",
+                          "G": 12
+                        }
+                      }
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "individu": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Mme MONOT V.",
+                      "N": "109#_SLX1xElKknE9dU7pb0lkI2FwTeHcSeTJz0okXM62Qc"
+                    }
+                  },
+                  "coefficient": 1,
+                  "descriptif": "DS6 Respiration animale",
+                  "date": {
+                    "_T": 7,
+                    "V": "30/03/2026"
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  }
+                },
+                {
+                  "L": "Acrosport",
+                  "N": "52#c3YCYnnliJjICYoywfiMSNEQoZAu2tCDPCpGz3bOUUc",
+                  "G": 29,
+                  "listeNiveauxDAcquisitions": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Maîtrise fragile",
+                        "N": "93#wuX0Co4syv5OcRrsC7Jy2sX6u4OzvikaeazoEt-yYiY",
+                        "G": 4,
+                        "abbreviation": "C",
+                        "ordre": 3,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "ÉDUCATION PHYSIQUE ET SPORTIVE",
+                            "N": "86#KzTrasXyjfa7flr5qbEBJe4yJe900mP4J9SWrZQQV7E",
+                            "G": 1,
+                            "strPrefixes": "D3"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "5ème : Acrosport",
+                            "N": "44#hGnQfgmFa1MNDHZ7sy1iTd-7wTMfrNFDCKMLj-KoZCU"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "s'investir dans un projet artistique",
+                            "N": "25#d3DXVKo8ItX5qJs9QeP6RRIHOLT_NyhtICQBAgubGOo"
+                          }
+                        }
+                      },
+                      {
+                        "L": "Maîtrise satisfaisante",
+                        "N": "93#50f7XAflte9njnT1oL_k0WWA3L9kvdwDq453a4ElVE8",
+                        "G": 2,
+                        "abbreviation": "A",
+                        "ordre": 2,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "ÉDUCATION PHYSIQUE ET SPORTIVE",
+                            "N": "86#KzTrasXyjfa7flr5qbEBJe4yJe900mP4J9SWrZQQV7E",
+                            "G": 1,
+                            "strPrefixes": "D1.4"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "5ème : Acrosport",
+                            "N": "44#hGnQfgmFa1MNDHZ7sy1iTd-7wTMfrNFDCKMLj-KoZCU"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Se renverser et s'équilibrer sur les mains",
+                            "N": "25#Nsz0sCwKaBVdETEu0A2pR5duu3dhM8GKrK9hmrRmAkg"
+                          }
+                        }
+                      },
+                      {
+                        "L": "Maîtrise fragile",
+                        "N": "93#wuX0Co4syv5OcRrsC7Jy2sX6u4OzvikaeazoEt-yYiY",
+                        "G": 4,
+                        "abbreviation": "C",
+                        "ordre": 1,
+                        "pilier": {
+                          "_T": 24,
+                          "V": {
+                            "L": "ÉDUCATION PHYSIQUE ET SPORTIVE",
+                            "N": "86#KzTrasXyjfa7flr5qbEBJe4yJe900mP4J9SWrZQQV7E",
+                            "G": 1,
+                            "strPrefixes": "D1.4"
+                          }
+                        },
+                        "coefficient": 1,
+                        "domaine": {
+                          "_T": 24,
+                          "V": {
+                            "L": "5ème : Acrosport",
+                            "N": "44#hGnQfgmFa1MNDHZ7sy1iTd-7wTMfrNFDCKMLj-KoZCU"
+                          }
+                        },
+                        "item": {
+                          "_T": 24,
+                          "V": {
+                            "L": "Manipuler le voltigeur",
+                            "N": "25#vlGtYyRGJyvaVrRhwAXpoqvcx9gxunBiEuHdpofv1eU"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "listePaliers": {
+                    "_T": 24,
+                    "V": [
+                      {
+                        "L": "Cycle 4",
+                        "N": "100#7xp9Q53akoSe42sVt6ThbyDzgSLVWs6U9OYRGukInB4"
+                      }
+                    ]
+                  },
+                  "matiere": {
+                    "_T": 24,
+                    "V": {
+                      "L": "ED.PHYSIQUE & SPORT.",
+                      "N": "79#ur3sg0W4mLHPeYTdYUIduw1ztho_ekfPlOWCskQLn80",
+                      "G": 16,
+                      "couleur": "#11DDEE",
+                      "ordre": 2,
+                      "serviceConcerne": {
+                        "_T": 24,
+                        "V": {
+                          "N": "131#cjtV7P-SwqmviU8kR0eUGdgQBdRlsfumobWZYmczHMo",
+                          "G": 12
+                        }
+                      }
+                    }
+                  },
+                  "ListeThemes": {
+                    "_T": 24,
+                    "V": []
+                  },
+                  "individu": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Mme GARNIER C.",
+                      "N": "109#UTcXpEYmUSQMvvygpoMW5DyuU52CflZx1BQ1HopOzCc"
+                    }
+                  },
+                  "coefficient": 1,
+                  "descriptif": "",
+                  "date": {
+                    "_T": 7,
+                    "V": "26/03/2026"
+                  },
+                  "periode": {
+                    "_T": 24,
+                    "V": {
+                      "L": "Trimestre 3",
+                      "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                    }
+                  }
+                }
+              ]
+            },
+            "page": {
+              "periode": {
+                "_T": 24,
+                "V": {
+                  "L": "Trimestre 3",
+                  "N": "105#Cj4KjEsKkVEZe0XHbIyNiic5Bac-upUSHtscI8y9jb0"
+                }
+              }
+            }
+          },
+          "devoirSurveille": {
+            "listeDS": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "enseignementADistance": {
+            "jours": {
+              "_T": 24,
+              "V": [
+                {
+                  "G": 1,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "24/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 2,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "27/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 3,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "28/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 4,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "30/04/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 5,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "04/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 6,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "05/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                },
+                {
+                  "G": 7,
+                  "setOfDJCours": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "date": {
+                    "_T": 7,
+                    "V": "06/05/2026"
+                  },
+                  "enEtablissement": true,
+                  "aDistance": false,
+                  "jourEntier": true,
+                  "setOfDJTravaille": {
+                    "_T": 26,
+                    "V": "[0,1]"
+                  },
+                  "listeVisios": {
+                    "_T": 24,
+                    "V": []
+                  }
+                }
+              ]
+            },
+            "actif": false
+          },
+          "kiosque": {
+            "listeRessources": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "lienUtile": {
+            "titre": "Liens et numéros utiles",
+            "listeLiens": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "WEB RADIO",
+                  "commentaire": "",
+                  "url": "https://tube-arts-lettres-sciences-humaines.apps.education.fr/c/scoolradio/videos"
+                },
+                {
+                  "L": "ENT DU COLLEGE F. DARD",
+                  "commentaire": "",
+                  "url": "https://saintchef-isere.ent.auvergnerhonealpes.fr/"
+                },
+                {
+                  "L": "ESIDOC",
+                  "commentaire": "",
+                  "url": "https://0383301g.esidoc.fr/"
+                }
+              ]
+            }
+          },
+          "partenaireCDI": {
+            "listeCDI": {
+              "_T": 24,
+              "V": [
+                {
+                  "L": "Portail du CDI",
+                  "N": "20#BOZYLYliR_1Fvro_fN_7Twjs-F37M19ojIcx2W3EUYI",
+                  "url": "https://0383301g.esidoc.fr/home/",
+                  "avecDelegationAuth": true,
+                  "avecActualisation": false
+                }
+              ]
+            }
+          },
+          "voteElecMembreBureau": {
+            "listeOperationsEP": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "voteElecElecteur": {
+            "listeOperationsEP": {
+              "_T": 24,
+              "V": []
+            }
+          },
+          "documentsASigner": {
+            "nombreDocumentsDocumentsSignatures": 0
+          }
+        },
+        "nom": "PageAccueil"
       }
     }
   }

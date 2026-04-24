@@ -1,8 +1,1 @@
-matiere,ordre,est_service_en_groupe,moy_eleve,bareme_moy_eleve,moy_classe,moy_min,moy_max,couleur
-MATHEMATIQUES > MATHEMATIQUES,14,False,"13,16",20,"13,09","2,88","19,86",#F51C0A
-TECHNOLOGIE,3,False,14,20,"17,54",14,20,#FFED00
-ANGLAIS LV1,4294967295,False,"12,17",20,"14,81","8,33",20,#F906ED
-ARTS PLASTIQUES,4,False,10,20,"13,8",8,20,#F6F0B5
-ESPAGNOL LV2,12,True,8,20,"17,79",8,20,#41768B
-SCIENCES VIE & TERRE,8,True,4,20,"8,72",0,"17,5",#5C782A
-HISTOIRE-GEOGRAPHIE,1,False,"4,5",20,"11,52","4,5",18,#45F50A
+eleve,classe,matiere,ordre,est_service_en_groupe,moy_eleve,bareme_moy_eleve,moy_classe,moy_min,moy_max,couleur
