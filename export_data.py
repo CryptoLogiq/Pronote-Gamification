@@ -1,0 +1,367 @@
+import json
+import csv
+import time
+
+
+# =========================
+# STUDENT HELPERS
+# =========================
+def normalize_student(student_dict=None):
+    student_dict = student_dict or {}
+    return {
+        "name": (student_dict.get("name") or "").strip(),
+        "class": (student_dict.get("class") or "").strip(),
+    }
+
+
+def student_key(student_dict=None):
+    s = normalize_student(student_dict)
+    return f"{s['name']}|{s['class']}"
+
+
+# =========================
+# JSON EXPORTS
+# =========================
+def count_dernieres_notes_for_student(raw_responses_list, student):
+    count = 0
+    target = normalize_student(student)
+
+    for item in raw_responses_list:
+        data = item.get("data", {})
+        stu = normalize_student(item.get("student"))
+
+        if (
+            data.get("id") == "DernieresNotes"
+            and stu["name"] == target["name"]
+            and stu["class"] == target["class"]
+        ):
+            count += 1
+
+    return count
+
+
+def wait_for_dernieres_notes(raw_responses_list, student, previous_count=0, timeout=12):
+    start = time.time()
+
+    while time.time() - start <= timeout:
+        now = count_dernieres_notes_for_student(raw_responses_list, student)
+        if now > previous_count:
+            return True
+        time.sleep(0.25)
+
+    return False
+
+
+def save_all_responses_to_json(raw_responses_list, filename="pronote_raw_responses.json"):
+    grouped = {"students": {}}
+
+    for item in raw_responses_list:
+        student = normalize_student(item.get("student"))
+        s_key = student_key(student)
+
+        if s_key not in grouped["students"]:
+            grouped["students"][s_key] = {
+                "student": student,
+                "responses": {},
+            }
+
+        data = item.get("data", {})
+        response_id = data.get("id", "UNKNOWN")
+
+        if response_id not in grouped["students"][s_key]["responses"]:
+            grouped["students"][s_key]["responses"][response_id] = []
+
+        grouped["students"][s_key]["responses"][response_id].append({
+            "url": item.get("url"),
+            "data": data,
+        })
+
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(grouped, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ JSON brut sauvegardé dans : {filename}")
+
+
+def save_raw_responses_flat(raw_responses_list, filename="pronote_raw_responses_flat.json"):
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(raw_responses_list, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ JSON brut à plat sauvegardé dans : {filename}")
+
+
+def iter_dernieres_notes_payloads(raw_responses_list):
+    for item in raw_responses_list:
+        data = item.get("data", {})
+        if data.get("id") != "DernieresNotes":
+            continue
+
+        payload = data.get("dataSec", {}).get("data", {})
+        if not payload:
+            continue
+
+        yield normalize_student(item.get("student")), payload
+
+
+# =========================
+# CSV EXPORTS
+# =========================
+def export_notes_csv(raw_responses_list, filename="notes.csv"):
+    rows = []
+
+    for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
+        devoirs = payload.get("listeDevoirs", {}).get("V", [])
+
+        for devoir in devoirs:
+            rows.append({
+                "eleve": student["name"],
+                "classe": student["class"],
+                "matiere": devoir.get("service", {}).get("V", {}).get("L", ""),
+                "note": devoir.get("note", {}).get("V", ""),
+                "bareme": devoir.get("bareme", {}).get("V", ""),
+                "date": devoir.get("date", {}).get("V", ""),
+                "periode": devoir.get("periode", {}).get("V", {}).get("L", ""),
+                "moyenne_matiere": devoir.get("moyenne", {}).get("V", ""),
+                "coefficient": devoir.get("coefficient", ""),
+                "note_max": devoir.get("noteMax", {}).get("V", ""),
+                "note_min": devoir.get("noteMin", {}).get("V", ""),
+                "commentaire": devoir.get("commentaire", ""),
+                "commentaire_sur_note": devoir.get("commentaireSurNote", ""),
+                "est_bonus": devoir.get("estBonus", False),
+                "est_facultatif": devoir.get("estFacultatif", False),
+                "est_en_groupe": devoir.get("estEnGroupe", False),
+                "couleur_matiere": devoir.get("service", {}).get("V", {}).get("couleur", ""),
+                "libelle_sujet": devoir.get("libelleSujet", ""),
+                "libelle_corrige": devoir.get("libelleCorrige", ""),
+            })
+
+    with open(filename, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "eleve", "classe",
+            "matiere", "note", "bareme", "date", "periode",
+            "moyenne_matiere", "coefficient", "note_max", "note_min",
+            "commentaire", "commentaire_sur_note",
+            "est_bonus", "est_facultatif", "est_en_groupe",
+            "couleur_matiere", "libelle_sujet", "libelle_corrige",
+        ])
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"✅ {filename} généré ({len(rows)} lignes)")
+
+def _text(value):
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _clean_matiere(label):
+    label = _text(label)
+
+    if ">" in label:
+        label = label.split(">")[-1].strip()
+
+    return label
+
+
+def _clean_note(value):
+    return _text(value).lstrip("|").strip()
+
+
+def _format_note_for_table(devoir):
+    note = _clean_note(devoir.get("note", {}).get("V", ""))
+    bareme = _clean_note(devoir.get("bareme", {}).get("V", ""))
+    date = _text(devoir.get("date", {}).get("V", ""))
+    coef = _text(devoir.get("coefficient", ""))
+    commentaire = _text(devoir.get("commentaire", ""))
+
+    if note and bareme:
+        result = f"{note}/{bareme}"
+    elif note:
+        result = note
+    else:
+        return ""
+
+    details = []
+
+    if date:
+        details.append(date)
+
+    if coef:
+        details.append(f"coef {coef}")
+
+    if commentaire:
+        details.append(commentaire)
+
+    if details:
+        result += " (" + ", ".join(details) + ")"
+
+    return result
+
+
+def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_eleves.csv"):
+    students = []
+    matieres = []
+    data = {}
+    moyennes_generales = {}
+
+    for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
+        student_label = f"{student['name']} ({student['class']})"
+
+        if student_label not in students:
+            students.append(student_label)
+
+        moy_generale = _text(payload.get("moyGenerale", {}).get("V", ""))
+        if moy_generale:
+            moyennes_generales[student_label] = moy_generale
+
+        services = payload.get("listeServices", {}).get("V", [])
+
+        for service in services:
+            matiere = _clean_matiere(service.get("L", ""))
+
+            if not matiere:
+                continue
+
+            if matiere not in matieres:
+                matieres.append(matiere)
+
+            if matiere not in data:
+                data[matiere] = {}
+
+            if student_label not in data[matiere]:
+                data[matiere][student_label] = {
+                    "moyenne": "",
+                    "notes": [],
+                }
+
+            data[matiere][student_label]["moyenne"] = _text(
+                service.get("moyEleve", {}).get("V", "")
+            )
+
+        devoirs = payload.get("listeDevoirs", {}).get("V", [])
+
+        for devoir in devoirs:
+            matiere = _clean_matiere(
+                devoir.get("service", {}).get("V", {}).get("L", "")
+            )
+
+            if not matiere:
+                continue
+
+            if matiere not in matieres:
+                matieres.append(matiere)
+
+            if matiere not in data:
+                data[matiere] = {}
+
+            if student_label not in data[matiere]:
+                data[matiere][student_label] = {
+                    "moyenne": "",
+                    "notes": [],
+                }
+
+            note_txt = _format_note_for_table(devoir)
+
+            if note_txt:
+                data[matiere][student_label]["notes"].append(note_txt)
+
+    with open(filename, "w", newline="", encoding="utf-8-sig") as f:
+        fieldnames = ["matiere"] + students
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+
+        writer.writeheader()
+
+        row = {"matiere": "MOYENNE GENERALE"}
+
+        for student_label in students:
+            moyenne = moyennes_generales.get(student_label, "")
+            row[student_label] = f"{moyenne}/20" if moyenne else ""
+
+        writer.writerow(row)
+
+        for matiere in matieres:
+            row = {"matiere": matiere}
+
+            for student_label in students:
+                info = data.get(matiere, {}).get(student_label, {})
+
+                cell = ""
+
+                moyenne = info.get("moyenne", "")
+                notes = info.get("notes", [])
+
+                if moyenne:
+                    cell = f"Moyenne : {moyenne}/20"
+
+                if notes:
+                    if cell:
+                        cell += " — "
+                    cell += " | ".join(notes)
+
+                row[student_label] = cell
+
+            writer.writerow(row)
+
+    print(f"✅ {filename} généré ({len(matieres) + 1} lignes)")
+
+
+def export_services_csv(raw_responses_list, filename="services.csv"):
+    rows = []
+
+    for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
+        services = payload.get("listeServices", {}).get("V", [])
+
+        for service in services:
+            rows.append({
+                "eleve": student["name"],
+                "classe": student["class"],
+                "matiere": service.get("L", ""),
+                "ordre": service.get("ordre", ""),
+                "est_service_en_groupe": service.get("estServiceEnGroupe", False),
+                "moy_eleve": service.get("moyEleve", {}).get("V", ""),
+                "bareme_moy_eleve": service.get("baremeMoyEleve", {}).get("V", ""),
+                "moy_classe": service.get("moyClasse", {}).get("V", ""),
+                "moy_min": service.get("moyMin", {}).get("V", ""),
+                "moy_max": service.get("moyMax", {}).get("V", ""),
+                "couleur": service.get("couleur", ""),
+            })
+
+    with open(filename, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "eleve", "classe",
+            "matiere", "ordre", "est_service_en_groupe",
+            "moy_eleve", "bareme_moy_eleve", "moy_classe",
+            "moy_min", "moy_max", "couleur",
+        ])
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"✅ {filename} généré ({len(rows)} lignes)")
+
+
+def export_resume_csv(raw_responses_list, filename="resume.csv"):
+    rows = []
+
+    for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
+        rows.append({
+            "eleve": student["name"],
+            "classe": student["class"],
+            "moy_generale": payload.get("moyGenerale", {}).get("V", ""),
+            "moy_generale_classe": payload.get("moyGeneraleClasse", {}).get("V", ""),
+            "bareme_moy_generale": payload.get("baremeMoyGenerale", {}).get("V", ""),
+            "bareme_moy_generale_defaut": payload.get("baremeMoyGeneraleParDefaut", {}).get("V", ""),
+            "avec_detail_devoir": payload.get("avecDetailDevoir", False),
+            "avec_detail_service": payload.get("avecDetailService", False),
+        })
+
+    with open(filename, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=[
+            "eleve", "classe",
+            "moy_generale", "moy_generale_classe",
+            "bareme_moy_generale", "bareme_moy_generale_defaut",
+            "avec_detail_devoir", "avec_detail_service",
+        ])
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"✅ {filename} généré ({len(rows)} lignes)")
