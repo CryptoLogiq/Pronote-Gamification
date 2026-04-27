@@ -563,13 +563,12 @@ def go_to_notes_all_students(page, home_url=None, timeout_per_student=20):
 
     page.wait_for_timeout(1500)
 
+    # Export JSON debug
     export_data.save_all_responses_to_json(raw_responses)
     export_data.save_raw_responses_flat(raw_responses)
 
-    export_data.export_notes_csv(raw_responses)
-    export_data.export_services_csv(raw_responses)
-    export_data.export_resume_csv(raw_responses)
-    export_data.export_tableau_notes_eleves_csv(raw_responses)
+    # Export CSV : 1 fichier par élève
+    export_data.export_notes_brutes_par_eleve_csv(raw_responses)
 
     print("✅ dump JSON + CSV multi-élèves terminés")
     return True
