@@ -1,12 +1,22 @@
-matiere,note,bareme,date,periode,moyenne_matiere,coefficient,note_max,note_min,commentaire,commentaire_sur_note,est_bonus,est_facultatif,est_en_groupe,couleur_matiere,libelle_sujet,libelle_corrige
-MATHEMATIQUES > MATHEMATIQUES,14,20,03/04/2026,Trimestre 3,"13,76",0.2,19,4,Automatismes18,A corriger au Kiosque avec un.e camarade qui t'entraîne.,False,False,False,#F51C0A,Automatisme et travail mental Test n°18 5ème.pdf,Automatisme et travail mental Test n°18 5ème CORRECTION.pdf
-TECHNOLOGIE,14,20,12/03/2026,Trimestre 3,"17,54",1.0,20,14,,,False,False,False,#FFED00,,
-MATHEMATIQUES > MATHEMATIQUES,11,18,13/03/2026,Trimestre 3,"12,46",0.2,18,2,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
-ANGLAIS LV1,20,20,13/03/2026,Trimestre 3,"15,86",0.5,20,4,,,False,False,False,#F906ED,,
-ANGLAIS LV1,17,20,13/03/2026,Trimestre 3,"18,25",0.5,20,10,,,False,False,False,#F906ED,,
-ARTS PLASTIQUES,10,20,16/03/2026,Trimestre 3,"13,8",1.0,20,8,Sortir de la case,,False,False,False,#F6F0B5,,
-MATHEMATIQUES > MATHEMATIQUES,|2,20,13/03/2026,Trimestre 3,20,0.2,20,20,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
-ESPAGNOL LV2,2,5,30/03/2026,Trimestre 3,"4,45",1.0,5,2,cartel superhéroe del plurilinguismo,,False,False,True,#41768B,,
-SCIENCES VIE & TERRE,4,20,17/03/2026,Trimestre 3,"8,72",1.0,"17,5",0,DS5 Nutrition animale,,False,False,True,#5C782A,,
-ANGLAIS LV1,9,20,13/04/2026,Trimestre 3,"13,72",2.0,20,7,,,False,False,False,#F906ED,,
-HISTOIRE-GEOGRAPHIE,"4,5",20,21/04/2026,Trimestre 3,"11,52",1.0,18,"4,5",Bilan Contacts,,False,False,False,#45F50A,,
+eleve,classe,matiere,note,bareme,date,periode,moyenne_matiere,coefficient,note_max,note_min,commentaire,commentaire_sur_note,est_bonus,est_facultatif,est_en_groupe,couleur_matiere,libelle_sujet,libelle_corrige
+SIMONIN Charly,5D,MATHEMATIQUES > MATHEMATIQUES,14,20,03/04/2026,Trimestre 3,"13,59",0.2,19,4,Automatismes18,A corriger au Kiosque avec un.e camarade qui t'entraîne.,False,False,False,#F51C0A,Automatisme et travail mental Test n°18 5ème.pdf,Automatisme et travail mental Test n°18 5ème CORRECTION.pdf
+SIMONIN Charly,5D,TECHNOLOGIE,14,20,12/03/2026,Trimestre 3,"17,54",1.0,20,14,,,False,False,False,#FFED00,,
+SIMONIN Charly,5D,MATHEMATIQUES > MATHEMATIQUES,11,18,13/03/2026,Trimestre 3,"12,46",0.2,18,2,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
+SIMONIN Charly,5D,ANGLAIS LV1,20,20,13/03/2026,Trimestre 3,"15,86",0.5,20,4,,,False,False,False,#F906ED,,
+SIMONIN Charly,5D,ANGLAIS LV1,17,20,13/03/2026,Trimestre 3,"18,25",0.5,20,10,,,False,False,False,#F906ED,,
+SIMONIN Charly,5D,ARTS PLASTIQUES,10,20,16/03/2026,Trimestre 3,"13,8",1.0,20,8,Sortir de la case,,False,False,False,#F6F0B5,,
+SIMONIN Charly,5D,MATHEMATIQUES > MATHEMATIQUES,|2,20,13/03/2026,Trimestre 3,20,0.2,20,20,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
+SIMONIN Charly,5D,ESPAGNOL LV2,2,5,30/03/2026,Trimestre 3,"4,45",1.0,5,2,cartel superhéroe del plurilinguismo,,False,False,True,#41768B,,
+SIMONIN Charly,5D,SCIENCES VIE & TERRE,4,20,17/03/2026,Trimestre 3,"8,72",1.0,"17,5",0,DS5 Nutrition animale,,False,False,True,#5C782A,,
+SIMONIN Charly,5D,ANGLAIS LV1,9,20,13/04/2026,Trimestre 3,"13,72",2.0,20,7,,,False,False,False,#F906ED,,
+SIMONIN Charly,5D,HISTOIRE-GEOGRAPHIE,"4,5",20,21/04/2026,Trimestre 3,"11,52",1.0,18,"4,5",Bilan Contacts,,False,False,False,#45F50A,,
+SIMONIN Nelson,5C,SCIENCES VIE & TERRE,"10,25",20,09/03/2026,Trimestre 3,"10,8",1.0,19,"2,25","DS5 Nutrition animale, microorganismes",,False,False,True,#5C782A,,
+SIMONIN Nelson,5C,MATHEMATIQUES,8,19,13/03/2026,Trimestre 3,"12,62",0.2,19,2,Automatismes17,,False,False,False,#F51C0A,Automatisme et travail mental Test n°17 5ème.pdf,Automatisme et travail mental Test n°17 5ème CORRECTION.pdf
+SIMONIN Nelson,5C,TECHNOLOGIE,14,20,12/03/2026,Trimestre 3,"15,56",1.0,20,12,,,False,False,False,#FFED00,,
+SIMONIN Nelson,5C,MATHEMATIQUES,"4,5",20,20/03/2026,Trimestre 3,"11,46",1.0,19,"1,5",DS5,,False,False,False,#F51C0A,5-DS5 2026.pdf,
+SIMONIN Nelson,5C,MATHEMATIQUES,13,20,03/04/2026,Trimestre 3,"14,59",0.2,20,8,Automatismes18,A corriger au Kiosque avec un.e camarade qui t'entraîne.,False,False,False,#F51C0A,Automatisme et travail mental Test n°18 5ème.pdf,Automatisme et travail mental Test n°18 5ème CORRECTION.pdf
+SIMONIN Nelson,5C,SCIENCES VIE & TERRE,2,20,30/03/2026,Trimestre 3,"10,14",1.0,"15,25",1,DS6 Respiration animale,,False,False,True,#5C782A,,
+SIMONIN Nelson,5C,HISTOIRE-GEOGRAPHIE,15,30,30/03/2026,Trimestre 3,"20,9",1.0,"29,5","8,5",,,False,False,False,#45F50A,,
+SIMONIN Nelson,5C,ESPAGNOL LV2,9,20,30/03/2026,Trimestre 3,"14,07",1.0,20,7,Ecrire une lettre aux correspondants ,,False,False,False,#41768B,,
+SIMONIN Nelson,5C,PHYSIQUE-CHIMIE,"0,5",20,23/03/2026,Trimestre 3,"11,83",1.0,"18,25","0,5",Evaluation bilan Corps purs et mélanges,,False,False,True,#B67549,,
+SIMONIN Nelson,5C,FRANCAIS,"3,5",10,17/04/2026,Trimestre 3,"4,57",0.5,"8,5","2,5",Ecrire une description,,False,False,False,#2E1FE0,,
