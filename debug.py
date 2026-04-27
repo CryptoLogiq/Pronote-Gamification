@@ -12,6 +12,9 @@ DEBUG = False
 # =========================
 DEBUG_PRINT = False
 
+# Affiche ou non le navigateur
+SHOW_BROWSER = True
+
 
 def _debug_stamp():
     return datetime.now().strftime("%Y%m%d_%H%M%S_%f")

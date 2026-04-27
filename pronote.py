@@ -1,5 +1,5 @@
 import time
-
+from ui_timing import ui_pause
 import debug
 import export_data
 from debug import DEBUG, DEBUG_PRINT
@@ -108,7 +108,7 @@ def find_pronote_root(page, timeout=10000):
             except Exception:
                 pass
 
-        page.wait_for_timeout(250)
+        ui_pause(page, "poll")
 
     return page
 
@@ -123,7 +123,7 @@ def get_students_in_order(page):
                 break
         except Exception:
             pass
-        page.wait_for_timeout(250)
+        ui_pause(page, "poll")
 
     if root.locator(combo_selector).count() == 0:
         print("❌ Sélecteur élève introuvable")
@@ -131,6 +131,7 @@ def get_students_in_order(page):
 
     combo = root.locator(combo_selector).first
     combo.click()
+    ui_pause(page, "after_select", label="ouverture liste élèves")
 
     tree = root.locator('div[role="tree"][aria-label="Liste"]').first
     tree.wait_for(state="visible", timeout=5000)
@@ -159,6 +160,7 @@ def get_students_in_order(page):
 
     try:
         page.keyboard.press("Escape")
+        ui_pause(page, "after_click", label="fermeture liste élèves")
     except Exception:
         pass
 
@@ -189,7 +191,7 @@ def selector_dialog_is_open(root):
     except Exception:
         return False
 
-def ensure_home_page(page, root_url, timeout=15):
+def ensure_home_page(page, root_url, timeout=25):
     deadline = time.time() + timeout
 
     home_button_selectors = [
@@ -235,6 +237,7 @@ def ensure_home_page(page, root_url, timeout=15):
                 if btn.count() > 0 and btn.is_visible():
                     print("🏠 clic bouton Accueil")
                     btn.click(timeout=2000)
+                    ui_pause(page, "after_home", label="retour accueil")
                     clicked = True
                     break
             except Exception:
@@ -245,24 +248,22 @@ def ensure_home_page(page, root_url, timeout=15):
                 if btn.count() > 0 and btn.is_visible():
                     print("🏠 clic bouton Accueil via page")
                     btn.click(timeout=2000)
+                    ui_pause(page, "after_home", label="retour accueil")
                     clicked = True
                     break
             except Exception:
                 pass
 
         if clicked:
-            page.wait_for_timeout(1800)
             continue
 
         # 3) Fallback si le bouton Accueil n'est pas trouvé
         try:
             print("⚠️ bouton Accueil introuvable → fallback URL accueil")
             page.goto(root_url, wait_until="domcontentloaded", timeout=10000)
-            page.wait_for_timeout(2000)
+            ui_pause(page, "page_change", label="goto accueil")
         except Exception:
             pass
-
-        page.wait_for_timeout(500)
 
     return False
 
@@ -277,12 +278,15 @@ def open_selector_if_needed(root, page):
 
     try:
         combo.click(timeout=3000)
+        ui_pause(page, "after_select", label="ouverture sélecteur élève")
     except Exception:
         try:
             combo.click(force=True, timeout=3000)
+            ui_pause(page, "after_select", label="ouverture sélecteur élève")
         except Exception:
             try:
                 combo.dispatch_event("click")
+                ui_pause(page, "after_select", label="ouverture sélecteur élève")
             except Exception:
                 print("❌ impossible d'ouvrir le sélecteur élève")
                 return False
@@ -290,7 +294,7 @@ def open_selector_if_needed(root, page):
     for _ in range(20):
         if selector_dialog_is_open(root):
             return True
-        page.wait_for_timeout(250)
+        ui_pause(page, "poll")
 
     print("❌ sélecteur élève non ouvert")
     return False
@@ -315,7 +319,8 @@ def select_student_by_index(page, student):
 
     items = tree.locator('div[role="treeitem"]')
     count = items.count()
-    print(f"🪲 treeitem count = {count}")
+    if DEBUG_PRINT:
+        print(f"🪲 treeitem count = {count}")
 
     if count <= student["index"]:
         print(f"❌ Index élève invalide : {student}")
@@ -325,7 +330,8 @@ def select_student_by_index(page, student):
     item = items.nth(student["index"])
 
     try:
-        print("🪲 TREEITEM HTML:", item.evaluate("el => el.outerHTML"))
+        if DEBUG_PRINT:
+            print("🪲 TREEITEM HTML:", item.evaluate("el => el.outerHTML"))
     except Exception:
         pass
 
@@ -337,6 +343,7 @@ def select_student_by_index(page, student):
         row.scroll_into_view_if_needed()
         print("🪲 try row.click()")
         row.click(timeout=3000)
+        ui_pause(page, "after_student_change", label=f"sélection {student['name']}")
         clicked = True
     except Exception as e:
         print("🪲 row.click failed:", e)
@@ -346,6 +353,7 @@ def select_student_by_index(page, student):
             row = item.locator("xpath=..").first
             print("🪲 try row.click(force=True)")
             row.click(force=True, timeout=3000)
+            ui_pause(page, "after_student_change", label=f"sélection force {student['name']}")
             clicked = True
         except Exception as e:
             print("🪲 row.click(force=True) failed:", e)
@@ -360,6 +368,7 @@ def select_student_by_index(page, student):
                     el.dispatchEvent(new MouseEvent('click', {bubbles:true}));
                 }
             """)
+            ui_pause(page, "after_student_change", label=f"sélection JS {student['name']}")
             clicked = True
         except Exception as e:
             print("🪲 JS click failed:", e)
@@ -385,12 +394,12 @@ def select_student_by_index(page, student):
 
         # Succès si la boîte se ferme
         if not dialog_open:
-            page.wait_for_timeout(1200)
+            ui_pause(page, "after_student_change", label="élève sélectionné")
             debug.export_state(page, root, prefix="student_selected_dialog_closed", student=student)
             print(f"✅ Élève sélectionné : {student['name']} ({student['class']})")
             return True
 
-        page.wait_for_timeout(250)
+        ui_pause(page, "poll")
 
     debug.export_state(page, root, prefix="student_selection_not_confirmed", student=student)
     print(f"⚠️ Clic effectué mais sélection non confirmée : {student['name']}")
@@ -414,7 +423,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
                 ).first
 
             if widget.count() == 0:
-                page.wait_for_timeout(500)
+                ui_pause(page, "poll")
                 continue
 
             widget.wait_for(state="visible", timeout=3000)
@@ -447,6 +456,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
 
                 try:
                     target.click(timeout=2500)
+                    ui_pause(page, "after_notes_open", label="ouverture notes")
                     clicked = True
                     break
                 except Exception:
@@ -454,6 +464,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
 
                 try:
                     target.click(force=True, timeout=2500)
+                    ui_pause(page, "after_notes_open", label="ouverture notes force")
                     clicked = True
                     break
                 except Exception:
@@ -462,8 +473,9 @@ def click_tout_voir_for_current_student(page, timeout=20):
                 try:
                     target.focus()
                     page.keyboard.press("Enter")
-                    page.wait_for_timeout(250)
+                    ui_pause(page, "poll")
                     page.keyboard.press("Space")
+                    ui_pause(page, "after_notes_open", label="ouverture notes clavier")
                     clicked = True
                     break
                 except Exception:
@@ -477,7 +489,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
                     pass
 
             if not clicked:
-                page.wait_for_timeout(500)
+                ui_pause(page, "poll")
                 continue
 
             # 3) validation réelle : attendre la requête DernieresNotes
@@ -486,7 +498,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
                 if now > before:
                     print(f"✅ bouton 'Tout voir' validé pour {student['name']}")
                     return True
-                page.wait_for_timeout(500)
+                ui_pause(page, "poll")
 
             print(f"⚠️ clic sur le bloc notes effectué mais aucune requête notes pour {student['name']}")
             return False
@@ -494,7 +506,7 @@ def click_tout_voir_for_current_student(page, timeout=20):
         except Exception:
             pass
 
-        page.wait_for_timeout(500)
+        ui_pause(page, "poll")
 
     print(f"❌ Bloc 'Dernières notes' introuvable pour {get_current_student()['name']}")
     return False
@@ -512,7 +524,7 @@ def debug_notes_widget(page):
 # =========================
 # MULTI-STUDENTS NOTES FLOW
 # =========================
-def go_to_notes_all_students(page, home_url=None, timeout_per_student=20):
+def go_to_notes_all_students(page, home_url=None, timeout_per_student=35):
     attach_response_hooks(page)
     raw_responses.clear()
     root_url = home_url or page.url
@@ -535,7 +547,7 @@ def go_to_notes_all_students(page, home_url=None, timeout_per_student=20):
         print(f"\n➡️ Traitement de {student['name']} ({student['class']})")
 
         # Toujours repartir de la page d'accueil avant une sélection
-        if not ensure_home_page(page, root_url, timeout=15):
+        if not ensure_home_page(page, root_url, timeout=25):
             print("❌ Impossible de revenir à la page d'accueil")
             return False
 
@@ -557,18 +569,24 @@ def go_to_notes_all_students(page, home_url=None, timeout_per_student=20):
             return False
 
         # Très important : revenir à l'accueil avant le prochain élève
-        if not ensure_home_page(page, root_url, timeout=15):
+        if not ensure_home_page(page, root_url, timeout=25):
             print(f"❌ Impossible de revenir à l'accueil après les notes de {student['name']}")
             return False
+        ui_pause(page, "between_students", label="pause entre élèves")
 
-    page.wait_for_timeout(1500)
+
+    ui_pause(page, "between_students", label="fin récupération élèves")
 
     # Export JSON debug
     export_data.save_all_responses_to_json(raw_responses)
+    ui_pause(page, "after_json_export", label="après export JSON groupé")
+
     export_data.save_raw_responses_flat(raw_responses)
+    ui_pause(page, "after_json_export", label="après export JSON brut")
 
     # Export CSV : 1 fichier par élève
     export_data.export_notes_brutes_par_eleve_csv(raw_responses)
+    ui_pause(page, "after_csv_export", label="après export CSV élèves")
 
     print("✅ dump JSON + CSV multi-élèves terminés")
     return True

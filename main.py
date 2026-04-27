@@ -6,22 +6,21 @@ import login
 import pronote
 import settings
 
-
-def ui_pause(page, ms=1200):
-    page.wait_for_timeout(ms)
+from ui_timing import ui_pause
 
 
 def main():
     creds = settings.load_credentials()
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=not debug.DEBUG)
+        browser = p.chromium.launch(headless=not debug.SHOW_BROWSER)
         context = browser.new_context()
         page = context.new_page()
 
         try:
             print("🌐 ouverture URL")
             page.goto(creds["url"])
+            ui_pause(page, "page_change", label="chargement initial")
 
             success = login.run_auth_flow(page, creds)
 

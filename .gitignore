@@ -1,6 +1,28 @@
-*.json
-/debug_exports
-/exports_eleves
-/__pycache__
+# Credentials
+credentials.json
+.env
+
+# Debug / captures sensibles
+debug_exports/
+*.html
+*.png
+
+# Exports PRONOTE
 *.csv
-/.idea
+*.json
+exports_eleves/
+pronote_raw_responses*.json
+
+# Playwright / profils
+profile/
+.playwright/
+__pycache__/
+*.pyc
+
+# Environnement Python
+.venv/
+venv/
+
+# IDEs
+.idea/
+.vscode/
