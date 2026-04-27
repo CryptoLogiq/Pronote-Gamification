@@ -14,11 +14,20 @@ def load_credentials():
         "jj": "00",
         "mm": "00",
         "aa": "0000",
-        "url": "https://your_pronote_url_here",
+        "url": "https://your_pronote_url_here"
     }
     required_keys = {"login", "password", "url", "jj", "mm", "aa"}
 
     def write_file():
+        if os.path.exists(filename):
+            backup = filename + ".bak"
+
+            try:
+                os.replace(filename, backup)
+                print(f"⚠️ Ancien credentials.json sauvegardé dans : {backup}")
+            except Exception:
+                print("⚠️ Impossible de sauvegarder l'ancien credentials.json")
+
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(template, f, indent=4, ensure_ascii=False)
 
