@@ -1,6 +1,8 @@
 import json
 import csv
 import time
+import pathlib
+import re
 
 
 # =========================
@@ -365,3 +367,264 @@ def export_resume_csv(raw_responses_list, filename="resume.csv"):
         writer.writerows(rows)
 
     print(f"✅ {filename} généré ({len(rows)} lignes)")
+
+def _text(value):
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _clean_note(value):
+    return _text(value).lstrip("|").strip()
+
+
+def _clean_matiere(label):
+    label = _text(label)
+
+    if ">" in label:
+        label = label.split(">")[-1].strip()
+
+    return label
+
+
+def _to_float_fr(value):
+    """
+    Convertit '9,38' ou '9.38' en float Python.
+    Retourne None si impossible.
+    """
+    value = _clean_note(value)
+
+    if not value:
+        return None
+
+    value = value.replace(",", ".")
+
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def _format_float_fr(value, decimals=2):
+    if value is None:
+        return ""
+
+    txt = f"{value:.{decimals}f}"
+    txt = txt.rstrip("0").rstrip(".")
+    return txt.replace(".", ",")
+
+
+def _get_devoir_sujet(devoir):
+    candidates = [
+        devoir.get("libelleSujet", ""),
+        devoir.get("commentaire", ""),
+        devoir.get("commentaireSurNote", ""),
+        devoir.get("libelleCorrige", ""),
+    ]
+
+    for value in candidates:
+        txt = _text(value)
+        if txt:
+            return txt
+
+    return ""
+
+
+def _get_note_sur_20(note, bareme):
+    note_float = _to_float_fr(note)
+    bareme_float = _to_float_fr(bareme)
+
+    if note_float is None or bareme_float in (None, 0):
+        return ""
+
+    return _format_float_fr((note_float / bareme_float) * 20)
+
+
+def export_notes_brutes_csv(raw_responses_list, filename="notes_brutes.csv"):
+    """
+    Export exploitable :
+    - 1 ligne = 1 note
+    - 1 cellule = 1 donnée
+    - trié par élève puis matière puis date
+    - moyenne générale répétée sur chaque ligne
+    - moyenne matière répétée sur chaque ligne
+    """
+
+    rows = []
+
+    for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
+        eleve = student["name"]
+        classe = student["class"]
+
+        moyenne_generale = _text(payload.get("moyGenerale", {}).get("V", ""))
+        bareme_moyenne_generale = _text(payload.get("baremeMoyGenerale", {}).get("V", "20"))
+
+        services = payload.get("listeServices", {}).get("V", [])
+        devoirs = payload.get("listeDevoirs", {}).get("V", [])
+
+        moyennes_par_matiere = {}
+
+        for service in services:
+            matiere = _clean_matiere(service.get("L", ""))
+
+            if not matiere:
+                continue
+
+            moyennes_par_matiere[matiere] = {
+                "moyenne_matiere": _text(service.get("moyEleve", {}).get("V", "")),
+                "bareme_moyenne_matiere": _text(service.get("baremeMoyEleve", {}).get("V", "20")),
+                "moyenne_classe": _text(service.get("moyClasse", {}).get("V", "")),
+                "moyenne_min": _text(service.get("moyMin", {}).get("V", "")),
+                "moyenne_max": _text(service.get("moyMax", {}).get("V", "")),
+            }
+
+        for devoir in devoirs:
+            matiere = _clean_matiere(
+                devoir.get("service", {}).get("V", {}).get("L", "")
+            )
+
+            if not matiere:
+                continue
+
+            infos_matiere = moyennes_par_matiere.get(matiere, {})
+
+            note = _clean_note(devoir.get("note", {}).get("V", ""))
+            bareme = _clean_note(devoir.get("bareme", {}).get("V", ""))
+
+            rows.append({
+                "eleve": eleve,
+                "classe": classe,
+
+                "moyenne_generale": moyenne_generale,
+                "bareme_moyenne_generale": bareme_moyenne_generale,
+
+                "matiere": matiere,
+                "moyenne_matiere": infos_matiere.get("moyenne_matiere", ""),
+                "bareme_moyenne_matiere": infos_matiere.get("bareme_moyenne_matiere", ""),
+                "moyenne_classe": infos_matiere.get("moyenne_classe", ""),
+                "moyenne_min": infos_matiere.get("moyenne_min", ""),
+                "moyenne_max": infos_matiere.get("moyenne_max", ""),
+
+                "sujet": _get_devoir_sujet(devoir),
+                "note": note,
+                "bareme": bareme,
+                "note_sur_20": _get_note_sur_20(note, bareme),
+                "coefficient": _text(devoir.get("coefficient", "")),
+                "date": _text(devoir.get("date", {}).get("V", "")),
+
+                "periode": devoir.get("periode", {}).get("V", {}).get("L", ""),
+                "note_min": _clean_note(devoir.get("noteMin", {}).get("V", "")),
+                "note_max": _clean_note(devoir.get("noteMax", {}).get("V", "")),
+                "commentaire": _text(devoir.get("commentaire", "")),
+                "commentaire_sur_note": _text(devoir.get("commentaireSurNote", "")),
+                "bonus": devoir.get("estBonus", False),
+                "facultatif": devoir.get("estFacultatif", False),
+                "en_groupe": devoir.get("estEnGroupe", False),
+            })
+
+    rows.sort(key=lambda r: (
+        r["eleve"],
+        r["classe"],
+        r["matiere"],
+        r["date"],
+        r["sujet"],
+    ))
+
+    fieldnames = [
+        "eleve",
+        "classe",
+
+        "moyenne_generale",
+        "bareme_moyenne_generale",
+
+        "matiere",
+        "moyenne_matiere",
+        "bareme_moyenne_matiere",
+        "moyenne_classe",
+        "moyenne_min",
+        "moyenne_max",
+
+        "sujet",
+        "note",
+        "bareme",
+        "note_sur_20",
+        "coefficient",
+        "date",
+
+        "periode",
+        "note_min",
+        "note_max",
+        "commentaire",
+        "commentaire_sur_note",
+        "bonus",
+        "facultatif",
+        "en_groupe",
+    ]
+
+    with open(filename, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"✅ {filename} généré ({len(rows)} notes)")
+
+
+def _safe_filename(value):
+    value = (value or "").strip()
+
+    # Remplace les caractères interdits sous Windows : \ / : * ? " < > |
+    value = re.sub(r'[\\/:*?"<>|]', "_", value)
+
+    # Remplace les espaces multiples
+    value = re.sub(r"\s+", "_", value)
+
+    return value
+
+
+def export_notes_brutes_par_eleve_csv(raw_responses_list, output_dir="exports_eleves"):
+    """
+    Génère 1 fichier CSV par élève.
+    Chaque fichier garde le même format que notes_brutes.csv :
+    - 1 ligne = 1 note
+    - 1 cellule = 1 donnée
+    - trié par matière/date/sujet
+    """
+
+    output_path = pathlib.Path(output_dir)
+    output_path.mkdir(exist_ok=True)
+
+    students = {}
+
+    # Regroupe les réponses par élève
+    for item in raw_responses_list:
+        student = normalize_student(item.get("student"))
+        key = student_key(student)
+
+        if not student["name"]:
+            continue
+
+        if key not in students:
+            students[key] = {
+                "student": student,
+                "responses": [],
+            }
+
+        students[key]["responses"].append(item)
+
+    # Exporte 1 fichier par élève
+    for data in students.values():
+        student = data["student"]
+        responses = data["responses"]
+
+        filename = _safe_filename(
+            f"notes_brutes_{student['name']}_{student['class']}.csv"
+        )
+
+        filepath = output_path / filename
+
+        export_notes_brutes_csv(
+            responses,
+            filename=str(filepath)
+        )
+
+    print(f"✅ exports par élève générés dans le dossier : {output_dir}")

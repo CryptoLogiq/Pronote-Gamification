@@ -5,12 +5,12 @@ import json
 # =========================
 # DEBUG for DEV
 # =========================
-DEBUG = True
+DEBUG = False
 
 # =========================
 # Debug output if needed
 # =========================
-DEBUG_PRINT = True
+DEBUG_PRINT = False
 
 
 def _debug_stamp():

@@ -1,3 +1,5 @@
-credentials.json
-backup.json
 *.json
+/debug_exports
+/exports_eleves
+/__pycache__
+*.csv
