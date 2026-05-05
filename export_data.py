@@ -3,6 +3,7 @@ import csv
 import time
 import pathlib
 import re
+from datetime import datetime
 
 
 # =========================
@@ -107,14 +108,20 @@ def iter_dernieres_notes_payloads(raw_responses_list):
 # =========================
 # CSV EXPORTS
 # =========================
+def _export_date():
+    return datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+
 def export_notes_csv(raw_responses_list, filename="notes.csv"):
     rows = []
+    date_export = _export_date()
 
     for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
         devoirs = payload.get("listeDevoirs", {}).get("V", [])
 
         for devoir in devoirs:
             rows.append({
+                "date_export": date_export,
                 "eleve": student["name"],
                 "classe": student["class"],
                 "matiere": devoir.get("service", {}).get("V", {}).get("L", ""),
@@ -138,6 +145,7 @@ def export_notes_csv(raw_responses_list, filename="notes.csv"):
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
+            "date_export",
             "eleve", "classe",
             "matiere", "note", "bareme", "date", "periode",
             "moyenne_matiere", "coefficient", "note_max", "note_min",
@@ -201,6 +209,7 @@ def _format_note_for_table(devoir):
 
 
 def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_eleves.csv"):
+    date_export = _export_date()
     students = []
     matieres = []
     data = {}
@@ -268,12 +277,12 @@ def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_
                 data[matiere][student_label]["notes"].append(note_txt)
 
     with open(filename, "w", newline="", encoding="utf-8-sig") as f:
-        fieldnames = ["matiere"] + students
+        fieldnames = ["date_export", "matiere"] + students
         writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
 
         writer.writeheader()
 
-        row = {"matiere": "MOYENNE GENERALE"}
+        row = {"date_export": date_export, "matiere": "MOYENNE GENERALE"}
 
         for student_label in students:
             moyenne = moyennes_generales.get(student_label, "")
@@ -282,7 +291,7 @@ def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_
         writer.writerow(row)
 
         for matiere in matieres:
-            row = {"matiere": matiere}
+            row = {"date_export": date_export, "matiere": matiere}
 
             for student_label in students:
                 info = data.get(matiere, {}).get(student_label, {})
@@ -309,12 +318,14 @@ def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_
 
 def export_services_csv(raw_responses_list, filename="services.csv"):
     rows = []
+    date_export = _export_date()
 
     for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
         services = payload.get("listeServices", {}).get("V", [])
 
         for service in services:
             rows.append({
+                "date_export": date_export,
                 "eleve": student["name"],
                 "classe": student["class"],
                 "matiere": service.get("L", ""),
@@ -330,6 +341,7 @@ def export_services_csv(raw_responses_list, filename="services.csv"):
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
+            "date_export",
             "eleve", "classe",
             "matiere", "ordre", "est_service_en_groupe",
             "moy_eleve", "bareme_moy_eleve", "moy_classe",
@@ -343,9 +355,11 @@ def export_services_csv(raw_responses_list, filename="services.csv"):
 
 def export_resume_csv(raw_responses_list, filename="resume.csv"):
     rows = []
+    date_export = _export_date()
 
     for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
         rows.append({
+            "date_export": date_export,
             "eleve": student["name"],
             "classe": student["class"],
             "moy_generale": payload.get("moyGenerale", {}).get("V", ""),
@@ -358,6 +372,7 @@ def export_resume_csv(raw_responses_list, filename="resume.csv"):
 
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
+            "date_export",
             "eleve", "classe",
             "moy_generale", "moy_generale_classe",
             "bareme_moy_generale", "bareme_moy_generale_defaut",
@@ -451,6 +466,7 @@ def export_notes_brutes_csv(raw_responses_list, filename="notes_brutes.csv"):
     """
 
     rows = []
+    date_export = _export_date()
 
     for student, payload in iter_dernieres_notes_payloads(raw_responses_list):
         eleve = student["name"]
@@ -492,6 +508,7 @@ def export_notes_brutes_csv(raw_responses_list, filename="notes_brutes.csv"):
             bareme = _clean_note(devoir.get("bareme", {}).get("V", ""))
 
             rows.append({
+                "date_export": date_export,
                 "eleve": eleve,
                 "classe": classe,
 
@@ -531,6 +548,7 @@ def export_notes_brutes_csv(raw_responses_list, filename="notes_brutes.csv"):
     ))
 
     fieldnames = [
+        "date_export",
         "eleve",
         "classe",
 
