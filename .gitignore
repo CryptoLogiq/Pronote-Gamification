@@ -26,3 +26,4 @@ venv/
 # IDEs
 .idea/
 .vscode/
+.codex
