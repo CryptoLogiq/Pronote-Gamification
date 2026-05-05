@@ -112,6 +112,111 @@ def _export_date():
     return datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
 
+def _csv_value(value):
+    if value is None:
+        return ""
+
+    return str(value).strip()
+
+
+def _row_key(row, fieldnames):
+    return tuple(
+        _csv_value(row.get(fieldname, ""))
+        for fieldname in fieldnames
+    )
+
+
+def _deduplicate_rows(rows, key_fieldnames, existing_keys=None):
+    existing_keys = existing_keys or set()
+    seen_keys = set()
+    unique_rows = []
+
+    for row in rows:
+        key = _row_key(row, key_fieldnames)
+
+        if key in existing_keys or key in seen_keys:
+            continue
+
+        seen_keys.add(key)
+        unique_rows.append(row)
+
+    return unique_rows
+
+
+def _dedupe_fieldnames(fieldnames, dedupe_fieldnames=None):
+    if dedupe_fieldnames:
+        return [fieldname for fieldname in dedupe_fieldnames if fieldname in fieldnames]
+
+    return [fieldname for fieldname in fieldnames if fieldname != "date_export"]
+
+
+def _append_csv_rows(
+    filename,
+    fieldnames,
+    rows,
+    delimiter=",",
+    encoding="utf-8",
+    dedupe_fieldnames=None,
+):
+    path = pathlib.Path(filename)
+    write_header = not path.exists() or path.stat().st_size == 0
+    existing_rows = []
+
+    if not write_header:
+        with open(path, "r", newline="", encoding="utf-8-sig") as f:
+            reader = csv.DictReader(f, delimiter=delimiter)
+            existing_fieldnames = reader.fieldnames or []
+            existing_rows = list(reader)
+
+        if existing_fieldnames != fieldnames:
+            merged_fieldnames = list(fieldnames)
+
+            for existing_fieldname in existing_fieldnames:
+                if existing_fieldname not in merged_fieldnames:
+                    merged_fieldnames.append(existing_fieldname)
+
+            with open(path, "w", newline="", encoding=encoding) as f:
+                writer = csv.DictWriter(f, fieldnames=merged_fieldnames, delimiter=delimiter)
+                writer.writeheader()
+                writer.writerows(existing_rows)
+
+            fieldnames = merged_fieldnames
+
+        key_fieldnames = _dedupe_fieldnames(fieldnames, dedupe_fieldnames)
+        deduplicated_existing_rows = _deduplicate_rows(existing_rows, key_fieldnames)
+
+        if len(deduplicated_existing_rows) != len(existing_rows):
+            with open(path, "w", newline="", encoding=encoding) as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=delimiter)
+                writer.writeheader()
+                writer.writerows(deduplicated_existing_rows)
+
+            existing_rows = deduplicated_existing_rows
+
+    key_fieldnames = _dedupe_fieldnames(fieldnames, dedupe_fieldnames)
+    existing_keys = {
+        _row_key(existing_row, key_fieldnames)
+        for existing_row in existing_rows
+    }
+    rows_to_write = _deduplicate_rows(
+        rows,
+        key_fieldnames,
+        existing_keys=existing_keys,
+    )
+
+    file_encoding = encoding if write_header else "utf-8"
+
+    with open(path, "a", newline="", encoding=file_encoding) as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=delimiter)
+
+        if write_header:
+            writer.writeheader()
+
+        writer.writerows(rows_to_write)
+
+    return len(rows_to_write), len(rows) - len(rows_to_write)
+
+
 def export_notes_csv(raw_responses_list, filename="notes.csv"):
     rows = []
     date_export = _export_date()
@@ -143,20 +248,32 @@ def export_notes_csv(raw_responses_list, filename="notes.csv"):
                 "libelle_corrige": devoir.get("libelleCorrige", ""),
             })
 
-    with open(filename, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "date_export",
-            "eleve", "classe",
-            "matiere", "note", "bareme", "date", "periode",
-            "moyenne_matiere", "coefficient", "note_max", "note_min",
-            "commentaire", "commentaire_sur_note",
-            "est_bonus", "est_facultatif", "est_en_groupe",
-            "couleur_matiere", "libelle_sujet", "libelle_corrige",
-        ])
-        writer.writeheader()
-        writer.writerows(rows)
+    fieldnames = [
+        "date_export",
+        "eleve", "classe",
+        "matiere", "note", "bareme", "date", "periode",
+        "moyenne_matiere", "coefficient", "note_max", "note_min",
+        "commentaire", "commentaire_sur_note",
+        "est_bonus", "est_facultatif", "est_en_groupe",
+        "couleur_matiere", "libelle_sujet", "libelle_corrige",
+    ]
 
-    print(f"✅ {filename} généré ({len(rows)} lignes)")
+    added_count, duplicate_count = _append_csv_rows(
+        filename,
+        fieldnames,
+        rows,
+        dedupe_fieldnames=[
+            "eleve",
+            "classe",
+            "matiere",
+            "date",
+            "note",
+            "bareme",
+            "libelle_sujet",
+        ],
+    )
+
+    print(f"✅ {filename} alimenté ({added_count} lignes ajoutées, {duplicate_count} doublons ignorés)")
 
 def _text(value):
     if value is None:
@@ -276,44 +393,49 @@ def export_tableau_notes_eleves_csv(raw_responses_list, filename="tableau_notes_
             if note_txt:
                 data[matiere][student_label]["notes"].append(note_txt)
 
-    with open(filename, "w", newline="", encoding="utf-8-sig") as f:
-        fieldnames = ["date_export", "matiere"] + students
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+    fieldnames = ["date_export", "matiere"] + students
+    rows = []
 
-        writer.writeheader()
+    row = {"date_export": date_export, "matiere": "MOYENNE GENERALE"}
 
-        row = {"date_export": date_export, "matiere": "MOYENNE GENERALE"}
+    for student_label in students:
+        moyenne = moyennes_generales.get(student_label, "")
+        row[student_label] = f"{moyenne}/20" if moyenne else ""
+
+    rows.append(row)
+
+    for matiere in matieres:
+        row = {"date_export": date_export, "matiere": matiere}
 
         for student_label in students:
-            moyenne = moyennes_generales.get(student_label, "")
-            row[student_label] = f"{moyenne}/20" if moyenne else ""
+            info = data.get(matiere, {}).get(student_label, {})
 
-        writer.writerow(row)
+            cell = ""
 
-        for matiere in matieres:
-            row = {"date_export": date_export, "matiere": matiere}
+            moyenne = info.get("moyenne", "")
+            notes = info.get("notes", [])
 
-            for student_label in students:
-                info = data.get(matiere, {}).get(student_label, {})
+            if moyenne:
+                cell = f"Moyenne : {moyenne}/20"
 
-                cell = ""
+            if notes:
+                if cell:
+                    cell += " — "
+                cell += " | ".join(notes)
 
-                moyenne = info.get("moyenne", "")
-                notes = info.get("notes", [])
+            row[student_label] = cell
 
-                if moyenne:
-                    cell = f"Moyenne : {moyenne}/20"
+        rows.append(row)
 
-                if notes:
-                    if cell:
-                        cell += " — "
-                    cell += " | ".join(notes)
+    added_count, duplicate_count = _append_csv_rows(
+        filename,
+        fieldnames,
+        rows,
+        delimiter=";",
+        encoding="utf-8-sig",
+    )
 
-                row[student_label] = cell
-
-            writer.writerow(row)
-
-    print(f"✅ {filename} généré ({len(matieres) + 1} lignes)")
+    print(f"✅ {filename} alimenté ({added_count} lignes ajoutées, {duplicate_count} doublons ignorés)")
 
 
 def export_services_csv(raw_responses_list, filename="services.csv"):
@@ -339,18 +461,17 @@ def export_services_csv(raw_responses_list, filename="services.csv"):
                 "couleur": service.get("couleur", ""),
             })
 
-    with open(filename, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "date_export",
-            "eleve", "classe",
-            "matiere", "ordre", "est_service_en_groupe",
-            "moy_eleve", "bareme_moy_eleve", "moy_classe",
-            "moy_min", "moy_max", "couleur",
-        ])
-        writer.writeheader()
-        writer.writerows(rows)
+    fieldnames = [
+        "date_export",
+        "eleve", "classe",
+        "matiere", "ordre", "est_service_en_groupe",
+        "moy_eleve", "bareme_moy_eleve", "moy_classe",
+        "moy_min", "moy_max", "couleur",
+    ]
 
-    print(f"✅ {filename} généré ({len(rows)} lignes)")
+    added_count, duplicate_count = _append_csv_rows(filename, fieldnames, rows)
+
+    print(f"✅ {filename} alimenté ({added_count} lignes ajoutées, {duplicate_count} doublons ignorés)")
 
 
 def export_resume_csv(raw_responses_list, filename="resume.csv"):
@@ -370,18 +491,17 @@ def export_resume_csv(raw_responses_list, filename="resume.csv"):
             "avec_detail_service": payload.get("avecDetailService", False),
         })
 
-    with open(filename, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=[
-            "date_export",
-            "eleve", "classe",
-            "moy_generale", "moy_generale_classe",
-            "bareme_moy_generale", "bareme_moy_generale_defaut",
-            "avec_detail_devoir", "avec_detail_service",
-        ])
-        writer.writeheader()
-        writer.writerows(rows)
+    fieldnames = [
+        "date_export",
+        "eleve", "classe",
+        "moy_generale", "moy_generale_classe",
+        "bareme_moy_generale", "bareme_moy_generale_defaut",
+        "avec_detail_devoir", "avec_detail_service",
+    ]
 
-    print(f"✅ {filename} généré ({len(rows)} lignes)")
+    added_count, duplicate_count = _append_csv_rows(filename, fieldnames, rows)
+
+    print(f"✅ {filename} alimenté ({added_count} lignes ajoutées, {duplicate_count} doublons ignorés)")
 
 def _text(value):
     if value is None:
@@ -579,12 +699,24 @@ def export_notes_brutes_csv(raw_responses_list, filename="notes_brutes.csv"):
         "en_groupe",
     ]
 
-    with open(filename, "w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
-        writer.writeheader()
-        writer.writerows(rows)
+    added_count, duplicate_count = _append_csv_rows(
+        filename,
+        fieldnames,
+        rows,
+        delimiter=";",
+        encoding="utf-8-sig",
+        dedupe_fieldnames=[
+            "eleve",
+            "classe",
+            "matiere",
+            "date",
+            "note",
+            "bareme",
+            "sujet",
+        ],
+    )
 
-    print(f"✅ {filename} généré ({len(rows)} notes)")
+    print(f"✅ {filename} alimenté ({added_count} notes ajoutées, {duplicate_count} doublons ignorés)")
 
 
 def _safe_filename(value):
